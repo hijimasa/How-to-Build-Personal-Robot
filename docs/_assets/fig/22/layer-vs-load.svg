@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 360" role="img" aria-label="3D プリント部品の積層方向と荷重方向">
+  <title>FDM 3D プリントの積層方向と荷重方向：層と平行な荷重は強い、層と直交する荷重は弱い</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .layer { stroke: #37474f; stroke-width: 1; }
+      .layer-body { fill: #b0bec5; }
+      .layer-stroke { fill: none; stroke: #37474f; stroke-width: 0.8; }
+      .force { stroke: #c62828; stroke-width: 2.5; fill: #c62828; }
+      .force-nf { stroke: #c62828; stroke-width: 2.5; fill: none; }
+      .panel { fill: #fafafa; stroke: #888; stroke-width: 1.5; }
+      .ok-panel { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .ng-panel { fill: #ffebee; stroke: #c62828; stroke-width: 2; }
+      .ok-text { fill: #2e7d32; font-weight: bold; }
+      .ng-text { fill: #c62828; font-weight: bold; }
+    </style>
+  </defs>
+
+  <text x="390" y="26" text-anchor="middle" class="big">3D プリントの積層方向 × 荷重方向</text>
+
+  <!-- Panel 1: Good (force parallel to layers) -->
+  <g transform="translate(40,55)">
+    <rect x="0" y="0" width="330" height="280" rx="8" class="ok-panel"/>
+    <text x="165" y="28" text-anchor="middle" class="big ok-text">✓ 強い：層 と 荷重 が 平行</text>
+
+    <!-- Object with horizontal layers -->
+    <g transform="translate(80,50)">
+      <!-- Horizontal layers (stacked) -->
+      <rect x="0" y="0"  width="160" height="12" class="layer-body"/>
+      <rect x="0" y="12" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="24" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="36" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="48" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="60" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="72" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="84" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="96" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="108" width="160" height="12" class="layer-body"/>
+      <line x1="0" y1="12"  x2="160" y2="12"  class="layer-stroke"/>
+      <line x1="0" y1="24"  x2="160" y2="24"  class="layer-stroke"/>
+      <line x1="0" y1="36"  x2="160" y2="36"  class="layer-stroke"/>
+      <line x1="0" y1="48"  x2="160" y2="48"  class="layer-stroke"/>
+      <line x1="0" y1="60"  x2="160" y2="60"  class="layer-stroke"/>
+      <line x1="0" y1="72"  x2="160" y2="72"  class="layer-stroke"/>
+      <line x1="0" y1="84"  x2="160" y2="84"  class="layer-stroke"/>
+      <line x1="0" y1="96"  x2="160" y2="96"  class="layer-stroke"/>
+      <line x1="0" y1="108" x2="160" y2="108" class="layer-stroke"/>
+
+      <!-- Force: horizontal (parallel to layers) -->
+      <line x1="-20" y1="60" x2="8" y2="60" class="force-nf"/>
+      <polygon points="8,60 0,55 0,65" class="force"/>
+      <line x1="180" y1="60" x2="152" y2="60" class="force-nf"/>
+      <polygon points="152,60 160,55 160,65" class="force"/>
+    </g>
+
+    <text x="165" y="198" text-anchor="middle" class="small">横方向の力（引張／圧縮／曲げ）</text>
+    <text x="165" y="215" text-anchor="middle" class="small">層同士がずれない</text>
+
+    <text x="165" y="245" text-anchor="middle" class="lbl ok-text">例：水平な底板、側板</text>
+    <text x="165" y="262" text-anchor="middle" class="small">通常の設計で問題なし</text>
+  </g>
+
+  <!-- Panel 2: Bad (force perpendicular to layers) -->
+  <g transform="translate(410,55)">
+    <rect x="0" y="0" width="330" height="280" rx="8" class="ng-panel"/>
+    <text x="165" y="28" text-anchor="middle" class="big ng-text">✗ 弱い：層 と 荷重 が 直交</text>
+
+    <!-- Object with horizontal layers, but force vertical -->
+    <g transform="translate(80,50)">
+      <rect x="0" y="0"  width="160" height="12" class="layer-body"/>
+      <rect x="0" y="12" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="24" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="36" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="48" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="60" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="72" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="84" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="96" width="160" height="12" class="layer-body"/>
+      <rect x="0" y="108" width="160" height="12" class="layer-body"/>
+      <line x1="0" y1="12"  x2="160" y2="12"  class="layer-stroke"/>
+      <line x1="0" y1="24"  x2="160" y2="24"  class="layer-stroke"/>
+      <line x1="0" y1="36"  x2="160" y2="36"  class="layer-stroke"/>
+      <line x1="0" y1="48"  x2="160" y2="48"  class="layer-stroke"/>
+      <line x1="0" y1="60"  x2="160" y2="60"  class="layer-stroke"/>
+      <line x1="0" y1="72"  x2="160" y2="72"  class="layer-stroke"/>
+      <line x1="0" y1="84"  x2="160" y2="84"  class="layer-stroke"/>
+      <line x1="0" y1="96"  x2="160" y2="96"  class="layer-stroke"/>
+      <line x1="0" y1="108" x2="160" y2="108" class="layer-stroke"/>
+
+      <!-- Force: vertical (perpendicular to layers) -->
+      <line x1="80" y1="-25" x2="80" y2="-2" class="force-nf"/>
+      <polygon points="80,-2 75,-10 85,-10" class="force"/>
+      <line x1="80" y1="145" x2="80" y2="122" class="force-nf"/>
+      <polygon points="80,122 75,130 85,130" class="force"/>
+
+      <!-- Crack indication -->
+      <line x1="20" y1="60" x2="140" y2="60" stroke="#c62828" stroke-width="2.5" stroke-dasharray="4 2"/>
+    </g>
+
+    <text x="165" y="198" text-anchor="middle" class="small">縦方向の力（引張／衝撃）</text>
+    <text x="165" y="215" text-anchor="middle" class="ng-text">層と層の境目で剥離</text>
+
+    <text x="165" y="245" text-anchor="middle" class="lbl ng-text">例：モータマウントで</text>
+    <text x="165" y="262" text-anchor="middle" class="small">層と直交方向に負荷がかかる配置</text>
+  </g>
+</svg>

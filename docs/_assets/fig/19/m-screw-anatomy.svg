@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 360" role="img" aria-label="M ねじの構造と規格表記">
+  <title>M ねじの各部名称：頭の形状・呼び径・ピッチ・長さの定義</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .mono  { font-family: "Consolas", monospace; font-size: 12px; fill: #222; }
+      .screw { fill: #90a4ae; stroke: #37474f; stroke-width: 2; }
+      .dim   { stroke: #1565c0; stroke-width: 1.5; fill: none; }
+      .dim-text { fill: #1565c0; font-weight: bold; font-family: system-ui, sans-serif; font-size: 12px; }
+      .panel { fill: #fafafa; stroke: #888; stroke-width: 1.5; }
+      .thread { stroke: #37474f; stroke-width: 1; fill: none; }
+    </style>
+  </defs>
+
+  <text x="390" y="26" text-anchor="middle" class="big">M ねじの構造と規格表記（M3 × 10 の例）</text>
+
+  <!-- Main diagram: cap screw anatomy, viewed from the side -->
+  <g transform="translate(60,60)">
+    <!-- Head (hex socket) -->
+    <rect x="100" y="10" width="70" height="50" rx="3" class="screw"/>
+    <!-- Hex socket (dark hexagon inside) -->
+    <polygon points="125,20 145,20 155,35 145,50 125,50 115,35" fill="#212121" stroke="#212121"/>
+
+    <!-- Shank with threads (represented as horizontal lines) -->
+    <rect x="118" y="60" width="34" height="130" class="screw"/>
+    <line x1="118" y1="70" x2="152" y2="70" class="thread"/>
+    <line x1="118" y1="80" x2="152" y2="80" class="thread"/>
+    <line x1="118" y1="90" x2="152" y2="90" class="thread"/>
+    <line x1="118" y1="100" x2="152" y2="100" class="thread"/>
+    <line x1="118" y1="110" x2="152" y2="110" class="thread"/>
+    <line x1="118" y1="120" x2="152" y2="120" class="thread"/>
+    <line x1="118" y1="130" x2="152" y2="130" class="thread"/>
+    <line x1="118" y1="140" x2="152" y2="140" class="thread"/>
+    <line x1="118" y1="150" x2="152" y2="150" class="thread"/>
+    <line x1="118" y1="160" x2="152" y2="160" class="thread"/>
+    <line x1="118" y1="170" x2="152" y2="170" class="thread"/>
+    <line x1="118" y1="180" x2="152" y2="180" class="thread"/>
+
+    <!-- Dimension: diameter (呼び径) -->
+    <line x1="108" y1="75" x2="118" y2="75" class="dim"/>
+    <line x1="152" y1="75" x2="162" y2="75" class="dim"/>
+    <line x1="108" y1="70" x2="108" y2="80" class="dim"/>
+    <line x1="162" y1="70" x2="162" y2="80" class="dim"/>
+    <text x="70" y="78" class="dim-text">径 3 mm</text>
+    <text x="170" y="78" class="dim-text">＝ "M3"</text>
+
+    <!-- Dimension: length (首下から先端まで) -->
+    <line x1="200" y1="60" x2="220" y2="60" class="dim"/>
+    <line x1="200" y1="190" x2="220" y2="190" class="dim"/>
+    <line x1="210" y1="60" x2="210" y2="190" class="dim"/>
+    <polygon points="210,62 205,70 215,70" fill="#1565c0"/>
+    <polygon points="210,188 205,180 215,180" fill="#1565c0"/>
+    <text x="225" y="125" class="dim-text">長さ 10 mm</text>
+    <text x="225" y="142" class="small">（首下から</text>
+    <text x="225" y="156" class="small">　先端まで）</text>
+
+    <!-- Dimension: pitch -->
+    <line x1="165" y1="100" x2="200" y2="100" class="dim"/>
+    <line x1="165" y1="110" x2="200" y2="110" class="dim"/>
+    <text x="205" y="108" class="dim-text">ピッチ 0.5 mm</text>
+    <text x="205" y="124" class="small">（山と山の間隔）</text>
+
+    <!-- Head annotation -->
+    <line x1="100" y1="35" x2="30" y2="35" class="dim"/>
+    <text x="5" y="32" class="small">六角穴</text>
+    <text x="5" y="46" class="small">（六角レンチで</text>
+    <text x="5" y="60" class="small">　回す）</text>
+
+    <!-- Annotate the name -->
+    <text x="135" y="220" text-anchor="middle" class="lbl">キャップスクリュ</text>
+    <text x="135" y="234" text-anchor="middle" class="small">（六角穴付きボルト）</text>
+  </g>
+
+  <!-- Right panel: other head types -->
+  <g transform="translate(440,60)">
+    <rect x="0" y="0" width="300" height="240" rx="6" class="panel"/>
+    <text x="150" y="24" text-anchor="middle" class="big">よく使う「頭」のバリエーション</text>
+
+    <!-- Row 1: flat head (plus) -->
+    <ellipse cx="40" cy="55" rx="15" ry="5" class="screw"/>
+    <rect x="32" y="55" width="16" height="25" class="screw"/>
+    <line x1="30" y1="52" x2="50" y2="52" stroke="#212121" stroke-width="1.5"/>
+    <line x1="40" y1="48" x2="40" y2="58" stroke="#212121" stroke-width="1.5"/>
+    <text x="75" y="50" class="lbl">鍋ねじ（プラス）</text>
+    <text x="75" y="66" class="small">プラスドライバ。最もよく使う</text>
+
+    <!-- Row 2: cap screw (hex) -->
+    <rect x="32" y="100" width="16" height="10" rx="2" class="screw"/>
+    <polygon points="34,102 46,102 49,108 46,114 34,114 31,108" fill="#212121"/>
+    <rect x="36" y="110" width="8" height="22" class="screw"/>
+    <text x="75" y="105" class="lbl">キャップスクリュ</text>
+    <text x="75" y="121" class="small">六角レンチ。強く締められる</text>
+
+    <!-- Row 3: flat countersunk -->
+    <polygon points="25,150 55,150 48,162 32,162" class="screw"/>
+    <rect x="36" y="162" width="8" height="18" class="screw"/>
+    <text x="75" y="155" class="lbl">皿ねじ</text>
+    <text x="75" y="171" class="small">頭が基板面と面一になる</text>
+
+    <!-- Row 4: set screw (イモネジ) -->
+    <rect x="32" y="195" width="16" height="22" class="screw"/>
+    <rect x="34" y="197" width="12" height="18" fill="#212121"/>
+    <text x="75" y="200" class="lbl">イモねじ（止めねじ）</text>
+    <text x="75" y="216" class="small">D カット軸の固定に使う</text>
+    <text x="75" y="231" class="small">頭がなく、全体が六角穴</text>
+  </g>
+
+  <!-- Bottom caption -->
+  <rect x="30" y="315" width="720" height="40" rx="6" fill="#f5f5f5" stroke="#888"/>
+  <text x="390" y="336" text-anchor="middle" class="lbl">表記の読み方：<tspan font-weight="bold">M3 × 10</tspan> ＝ 呼び径 3 mm、長さ 10 mm。ピッチは 指定なし＝ 標準ピッチ 0.5 mm。</text>
+</svg>

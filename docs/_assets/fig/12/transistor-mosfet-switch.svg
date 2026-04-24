@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 360" role="img" aria-label="NPN トランジスタと N ch MOSFET のスイッチ回路">
+  <title>NPN トランジスタでのスイッチ／N ch MOSFET でのスイッチ／誘導性負荷のフライホイールダイオード</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 12px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .wire  { stroke: #525252; stroke-width: 2; fill: none; }
+      .body  { stroke: #525252; stroke-width: 2; fill: #ffffff; }
+      .red-lbl { fill: #c62828; font-family: monospace; font-size: 12px; font-weight: bold; }
+      .ok-panel { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .diode-body { fill: #616161; stroke: #212121; stroke-width: 1; }
+    </style>
+  </defs>
+
+  <text x="390" y="26" text-anchor="middle" class="big">GPIO で大電流を扱う：NPN と MOSFET のスイッチ回路</text>
+
+  <!-- Panel 1: NPN -->
+  <g transform="translate(30,55)">
+    <rect x="0" y="0" width="360" height="280" rx="8" class="ok-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big">① NPN トランジスタ（小電流向け）</text>
+
+    <!-- VCC rail -->
+    <line x1="40" y1="70" x2="320" y2="70" class="wire" stroke-width="3"/>
+    <text x="20" y="75" class="red-lbl">5V</text>
+
+    <!-- Load (motor symbol) -->
+    <circle cx="230" cy="110" r="20" class="body"/>
+    <text x="230" y="115" text-anchor="middle" class="big" font-size="16">M</text>
+    <line x1="230" y1="70" x2="230" y2="90" class="wire"/>
+    <line x1="230" y1="130" x2="230" y2="170" class="wire"/>
+
+    <!-- Transistor (NPN, simplified: circle with B-C-E) -->
+    <circle cx="230" cy="190" r="20" class="body"/>
+    <!-- Collector (top) -->
+    <line x1="230" y1="170" x2="230" y2="175" class="wire"/>
+    <!-- Base (left) -->
+    <line x1="210" y1="190" x2="160" y2="190" class="wire"/>
+    <!-- Emitter (bottom) with arrow -->
+    <line x1="230" y1="205" x2="230" y2="230" class="wire"/>
+    <polygon points="225,218 235,218 230,225" fill="#525252"/>
+    <text x="248" y="195" class="small">NPN</text>
+
+    <!-- Base resistor -->
+    <rect x="100" y="182" width="40" height="16" class="body" rx="2"/>
+    <text x="120" y="177" text-anchor="middle" class="small">1 kΩ</text>
+    <line x1="60" y1="190" x2="100" y2="190" class="wire"/>
+    <line x1="140" y1="190" x2="160" y2="190" class="wire"/>
+
+    <!-- GPIO input -->
+    <rect x="20" y="183" width="40" height="14" class="body"/>
+    <text x="40" y="175" text-anchor="middle" class="small">GPIO</text>
+
+    <!-- GND rail -->
+    <line x1="40" y1="250" x2="320" y2="250" class="wire" stroke-width="3"/>
+    <text x="20" y="255" class="small">GND</text>
+    <line x1="230" y1="230" x2="230" y2="250" class="wire"/>
+
+    <text x="180" y="273" text-anchor="middle" class="small">I_C max 200 mA（2N3904）。LED 多数・小型リレー向け</text>
+  </g>
+
+  <!-- Panel 2: MOSFET with flyback -->
+  <g transform="translate(410,55)">
+    <rect x="0" y="0" width="360" height="280" rx="8" class="ok-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big">② N ch MOSFET（大電流向け）+ フライホイール</text>
+
+    <!-- VCC rail -->
+    <line x1="40" y1="70" x2="320" y2="70" class="wire" stroke-width="3"/>
+    <text x="20" y="75" class="red-lbl">V_M</text>
+
+    <!-- Load (solenoid/relay coil) with inductor symbol -->
+    <rect x="210" y="90" width="40" height="50" class="body"/>
+    <line x1="218" y1="97" x2="242" y2="97" class="wire"/>
+    <line x1="218" y1="110" x2="242" y2="110" class="wire"/>
+    <line x1="218" y1="123" x2="242" y2="123" class="wire"/>
+    <line x1="218" y1="136" x2="242" y2="136" class="wire"/>
+    <text x="260" y="120" class="small">コイル</text>
+    <line x1="230" y1="70" x2="230" y2="90" class="wire"/>
+    <line x1="230" y1="140" x2="230" y2="160" class="wire"/>
+
+    <!-- Flyback diode across the coil (cathode to VCC, anode to drain) -->
+    <polygon points="173,95 173,115 188,105" fill="#616161" stroke="#212121" stroke-width="1"/>
+    <line x1="188" y1="90" x2="188" y2="120" stroke="#212121" stroke-width="2"/>
+    <line x1="230" y1="105" x2="188" y2="105" class="wire"/>
+    <line x1="173" y1="105" x2="173" y2="70" class="wire"/>
+    <text x="140" y="98" class="small">フライ</text>
+    <text x="140" y="112" class="small">ホイール</text>
+    <text x="140" y="126" class="small">D</text>
+
+    <!-- MOSFET (simplified) -->
+    <circle cx="230" cy="180" r="20" class="body"/>
+    <!-- Drain (top) -->
+    <line x1="230" y1="160" x2="230" y2="165" class="wire"/>
+    <!-- Gate (left) -->
+    <line x1="210" y1="180" x2="180" y2="180" class="wire"/>
+    <!-- Source (bottom) -->
+    <line x1="230" y1="195" x2="230" y2="220" class="wire"/>
+    <text x="248" y="185" class="small">MOSFET</text>
+
+    <!-- Gate resistor -->
+    <rect x="120" y="172" width="40" height="16" class="body" rx="2"/>
+    <text x="140" y="167" text-anchor="middle" class="small">220 Ω</text>
+    <line x1="80" y1="180" x2="120" y2="180" class="wire"/>
+    <line x1="160" y1="180" x2="180" y2="180" class="wire"/>
+
+    <!-- Gate pull-down resistor -->
+    <rect x="160" y="210" width="40" height="16" class="body" rx="2"/>
+    <text x="145" y="221" text-anchor="end" class="small">10 kΩ</text>
+    <line x1="180" y1="180" x2="180" y2="210" class="wire"/>
+    <line x1="180" y1="226" x2="180" y2="240" class="wire"/>
+
+    <!-- GPIO input -->
+    <rect x="40" y="173" width="40" height="14" class="body"/>
+    <text x="60" y="165" text-anchor="middle" class="small">GPIO</text>
+
+    <!-- GND rail -->
+    <line x1="40" y1="240" x2="320" y2="240" class="wire" stroke-width="3"/>
+    <text x="20" y="245" class="small">GND</text>
+    <line x1="230" y1="220" x2="230" y2="240" class="wire"/>
+
+    <text x="180" y="263" text-anchor="middle" class="small">I_D 数 A 可。モータ駆動 or 高輝度 LED に。</text>
+    <text x="180" y="276" text-anchor="middle" class="small">誘導性負荷には フライホイールダイオード 必須</text>
+  </g>
+</svg>

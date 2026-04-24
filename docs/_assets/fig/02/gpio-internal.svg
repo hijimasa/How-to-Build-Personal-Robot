@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 380" role="img" aria-label="GPIO の内部等価回路">
+  <title>CMOS プッシュプル出力段：出力 HIGH は PMOS から吐き出し、出力 LOW は NMOS へ吸い込む</title>
+  <defs>
+    <style>
+      .wire  { stroke: #525252; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .body  { stroke: #525252; stroke-width: 2; fill: #ffffff; }
+      .rail  { stroke: #525252; stroke-width: 3; fill: none; }
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 15px; fill: #222222; font-weight: bold; }
+      .pin   { font-family: system-ui, sans-serif; font-size: 12px; fill: #222222; }
+      .val   { font-family: system-ui, sans-serif; font-size: 13px; font-weight: bold; fill: #c62828; }
+      .src-c { stroke: #ef6c00; stroke-width: 2.5; fill: #ef6c00; }
+      .src-nf { stroke: #ef6c00; stroke-width: 2.5; fill: none; }
+      .snk-c { stroke: #1565c0; stroke-width: 2.5; fill: #1565c0; }
+      .snk-nf { stroke: #1565c0; stroke-width: 2.5; fill: none; }
+      .src-t { fill: #ef6c00; font-weight: bold; font-family: system-ui, sans-serif; font-size: 13px; }
+      .snk-t { fill: #1565c0; font-weight: bold; font-family: system-ui, sans-serif; font-size: 13px; }
+    </style>
+  </defs>
+
+  <!-- Rails -->
+  <line x1="60"  y1="70"  x2="420" y2="70"  class="rail"/>
+  <line x1="60"  y1="310" x2="420" y2="310" class="rail"/>
+  <text x="40"  y="75"  text-anchor="end" class="big">V_CC</text>
+  <text x="48"  y="65"  class="lbl">(5 V)</text>
+  <text x="40"  y="315" text-anchor="end" class="big">GND</text>
+
+  <!-- PMOS (upper transistor) — simplified symbol: rectangle with label -->
+  <rect x="200" y="110" width="80" height="50" class="body" rx="4"/>
+  <text x="240" y="142" text-anchor="middle" class="big">PMOS</text>
+  <!-- source to V_CC -->
+  <line x1="240" y1="70"  x2="240" y2="110" class="wire"/>
+  <!-- drain to output -->
+  <line x1="240" y1="160" x2="240" y2="190" class="wire"/>
+
+  <!-- NMOS (lower transistor) -->
+  <rect x="200" y="220" width="80" height="50" class="body" rx="4"/>
+  <text x="240" y="252" text-anchor="middle" class="big">NMOS</text>
+  <!-- drain up to output -->
+  <line x1="240" y1="190" x2="240" y2="220" class="wire"/>
+  <!-- source to GND -->
+  <line x1="240" y1="270" x2="240" y2="310" class="wire"/>
+
+  <!-- Output pin branch -->
+  <line x1="240" y1="190" x2="400" y2="190" class="wire"/>
+  <rect x="400" y="180" width="60" height="20" class="body"/>
+  <text x="430" y="195" text-anchor="middle" class="pin">出力ピン</text>
+  <!-- External load stub -->
+  <line x1="460" y1="190" x2="520" y2="190" class="wire"/>
+  <text x="530" y="195" class="lbl">→ 外部負荷</text>
+
+  <!-- Gate-driver input -->
+  <line x1="140" y1="140" x2="200" y2="140" class="wire"/>
+  <line x1="140" y1="245" x2="200" y2="245" class="wire"/>
+  <text x="120" y="145" text-anchor="end" class="lbl">digitalWrite</text>
+  <text x="120" y="250" text-anchor="end" class="lbl">（内部ロジック）</text>
+
+  <!-- HIGH state: source current arrow -->
+  <path d="M 272 95 C 300 95 320 95 330 135" class="src-nf"/>
+  <polygon points="330,135 322,123 336,123" class="src-c"/>
+  <text x="320" y="90"  class="src-t">HIGH 出力＝ 吐出し (source)</text>
+  <text x="320" y="106" class="src-t">I_OH ＝ +20 mA（DC 最大 / 40 mA 絶対最大）</text>
+
+  <!-- LOW state: sink current arrow -->
+  <path d="M 330 245 C 310 245 300 285 275 285" class="snk-nf"/>
+  <polygon points="275,285 287,279 287,291" class="snk-c"/>
+  <text x="320" y="340" class="snk-t">LOW 出力＝ 吸込み (sink)</text>
+  <text x="320" y="356" class="snk-t">I_OL ＝ −20 mA（DC 最大 / 40 mA 絶対最大）</text>
+
+  <!-- Note box -->
+  <rect x="40" y="340" width="260" height="30" rx="4" class="body"/>
+  <text x="52" y="360" class="lbl">値の出典：ATmega328P データシート p.316</text>
+</svg>

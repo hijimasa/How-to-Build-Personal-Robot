@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 360" role="img" aria-label="D カット軸にイモねじを当てる向き">
+  <title>D カット軸の平面にイモねじ先端を当てる正しい当たり方と、丸い面に当てた誤った当たり方</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .shaft { fill: #90a4ae; stroke: #37474f; stroke-width: 2; }
+      .wheel { fill: #eceff1; stroke: #37474f; stroke-width: 2; }
+      .screw { fill: #546e7a; stroke: #263238; stroke-width: 1.5; }
+      .ng-panel { fill: #ffebee; stroke: #c62828; stroke-width: 2; }
+      .ok-panel { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .ng-text { fill: #c62828; font-weight: bold; }
+      .ok-text { fill: #2e7d32; font-weight: bold; }
+      .arrow { stroke: #c62828; stroke-width: 2; fill: none; }
+      .force-arrow { stroke: #1565c0; stroke-width: 2; fill: #1565c0; }
+    </style>
+  </defs>
+
+  <text x="390" y="26" text-anchor="middle" class="big">D カット軸 と イモねじ：当たる面が勝負を決める</text>
+
+  <!-- Panel 1: NG - screw hits round side -->
+  <g transform="translate(30,55)">
+    <rect x="0" y="0" width="360" height="280" rx="8" class="ng-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big ng-text">✗ イモねじが 丸い面 に当たる</text>
+
+    <!-- Wheel (outer circle) -->
+    <circle cx="180" cy="150" r="85" class="wheel"/>
+    <!-- Center hole for shaft -->
+    <!-- D-cut shaft (circle with flat on one side, rotated so flat is on top) -->
+    <path d="M 150 135 L 210 135 L 210 150 A 30 30 0 1 1 150 150 Z" class="shaft"/>
+    <text x="180" y="160" text-anchor="middle" class="small">軸 φ 3</text>
+
+    <!-- Set screw coming from the bottom (hitting round part) -->
+    <rect x="172" y="200" width="16" height="35" class="screw"/>
+    <line x1="180" y1="180" x2="180" y2="200" class="arrow" stroke-dasharray="3 2"/>
+    <text x="180" y="255" text-anchor="middle" class="small">イモねじ</text>
+
+    <!-- Show slipping (rotation) -->
+    <path d="M 240 110 A 70 70 0 0 1 260 150" class="arrow"/>
+    <polygon points="260,150 253,145 258,138" fill="#c62828"/>
+    <text x="275" y="125" class="small ng-text">回転を</text>
+    <text x="275" y="140" class="small ng-text">受け止めきれず</text>
+    <text x="275" y="155" class="small ng-text">軸が空転</text>
+
+    <!-- Caption -->
+    <text x="180" y="265" text-anchor="middle" class="small ng-text">丸い面は摩擦のみで止める → 力に負けて滑る</text>
+  </g>
+
+  <!-- Panel 2: OK - screw hits flat side -->
+  <g transform="translate(410,55)">
+    <rect x="0" y="0" width="360" height="280" rx="8" class="ok-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big ok-text">✓ イモねじが 平らな面 に当たる</text>
+
+    <!-- Wheel -->
+    <circle cx="180" cy="150" r="85" class="wheel"/>
+    <!-- D-cut shaft with flat on the bottom (where screw comes from) -->
+    <path d="M 150 165 L 210 165 L 210 150 A 30 30 0 1 0 150 150 Z" class="shaft"/>
+    <text x="180" y="145" text-anchor="middle" class="small">軸 φ 3</text>
+
+    <!-- Set screw hitting the flat -->
+    <rect x="172" y="200" width="16" height="35" class="screw"/>
+    <line x1="180" y1="170" x2="180" y2="200" class="arrow" stroke-dasharray="3 2" stroke="#2e7d32"/>
+    <text x="180" y="255" text-anchor="middle" class="small">イモねじ</text>
+
+    <!-- Force equation indicator -->
+    <path d="M 240 110 A 70 70 0 0 1 260 150" stroke="#2e7d32" stroke-width="2" fill="none"/>
+    <polygon points="260,150 253,145 258,138" fill="#2e7d32"/>
+    <text x="275" y="125" class="small ok-text">平面で軸を</text>
+    <text x="275" y="140" class="small ok-text">機械的に</text>
+    <text x="275" y="155" class="small ok-text">ロックする</text>
+
+    <text x="180" y="265" text-anchor="middle" class="small ok-text">平面で形状的に引っかかる → トルクが掛けられる</text>
+  </g>
+</svg>

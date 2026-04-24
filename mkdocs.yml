@@ -1,0 +1,175 @@
+site_name: AIによるAIを用いた個人開発ロボットの作り方入門
+site_description: AI エージェントを使いこなしながら、部品を焼損させず、機械と電気の両面で自作ロボットを完成させる
+site_author: AIによるAIを用いた個人開発ロボットの作り方入門 Contributors
+site_url: https://hijimasa.github.io/How-to-Build-Personal-Robot/
+repo_url: https://github.com/hijimasa/How-to-Build-Personal-Robot
+repo_name: How-to-Build-Personal-Robot
+edit_uri: edit/main/docs/
+
+# v1 は日本語ファースト。英語は後追いで入れる想定のため、i18n プラグインを
+# 設定しつつも fallback_to_default: true で日本語にフォールバックさせる。
+docs_dir: docs
+exclude_docs: |
+  _templates/
+
+theme:
+  name: material
+  language: ja
+  features:
+    # navigation.instant は mkdocs-static-i18n の言語切替と非互換のため外している
+    # （参考: mkdocs-static-i18n 公式警告「not compatible with theme.features = navigation.instant」）
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: ダークモードに切り替え
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: ライトモードに切り替え
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search:
+      lang:
+        - ja
+        - en
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      languages:
+        - locale: ja
+          default: true
+          name: 日本語
+          build: true
+        - locale: en
+          name: English
+          build: true
+
+markdown_extensions:
+  # 標準的な拡張
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+  # pymdownx 系
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      base_path:
+        - docs
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra_javascript:
+  # MathJax（pymdownx.arithmatex と連携）
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - assets/javascripts/mathjax-config.js
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra:
+  # カスタム admonition などで後日使う
+  generator: false
+
+nav:
+  - ホーム: index.md
+
+  - Part I 共通基礎:
+      - はじめに: getting-started/01-introduction.md
+
+  - Part II 電気の基礎:
+      - 壊さないための電気基礎: getting-started/02-safety-basics.md
+      - データシートの読み方: getting-started/03-datasheet.md
+      - 電源の基礎: getting-started/04-power.md
+
+  - Part III 電気のワークフロー:
+      - 電気の設計フェーズ: workflow-electrical/05-design-phase.md
+      - 電気の組立フェーズ: workflow-electrical/06-assembly-phase.md
+      - 電気のテスト前チェック: workflow-electrical/07-pre-test-check.md
+      - 電気のテスト中チェック: workflow-electrical/08-test-check.md
+      - 電気のデバッグ: workflow-electrical/09-debugging.md
+
+  - Part IV 電気系トピック:
+      - LED を正しく光らせる: topics/10-led.md
+      - スイッチ入力: topics/11-switch.md
+      - トランジスタ／MOSFET をスイッチとして使う: topics/12-transistor-mosfet.md
+      - DC モータを回す: topics/13-dc-motor.md
+      - PWM と速度制御: topics/14-pwm.md
+      - サーボモータ: topics/15-servo.md
+      - センサ入門: topics/16-sensors.md
+      - ステッピングモータ: topics/17-stepper.md
+
+  - Part V 機械の基礎:
+      - 壊さないための機械基礎: basics-mechanical/18-mechanical-basics.md
+      - 機械の工具と部品規格: basics-mechanical/19-mechanical-tools-parts.md
+      - 寸法・公差・嵌合の読み方: basics-mechanical/20-dimensions-tolerance-fit.md
+
+  - Part VI 機械のワークフロー:
+      - 機械の設計フェーズ: workflow-mechanical/21-design-phase.md
+      - 製作フェーズ: workflow-mechanical/22-fabrication-phase.md
+      - 組立前チェック: workflow-mechanical/23-pre-assembly-check.md
+      - 組立中チェック: workflow-mechanical/24-assembly-check.md
+      - 機械のデバッグ: workflow-mechanical/25-debugging.md
+
+  - Part VII 機械系トピック:
+      - 筐体: topics-mechanical/26-chassis.md
+      - 駆動部: topics-mechanical/27-drivetrain.md
+      - モータマウント: topics-mechanical/28-motor-mount.md
+      - 重量・剛性・バランス: topics-mechanical/29-weight-rigidity-balance.md
+      - 配線の機械的管理: topics-mechanical/30-wiring-mechanical.md
+
+  - Part VIII プロジェクト:
+      - プロジェクト A ライントレースカー: projects/31-project-a-linetracer.md
+
+  - 付録:
+      - クローンボードの取り扱い: appendix/clone-boards.md

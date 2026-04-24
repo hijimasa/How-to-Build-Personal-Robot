@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 460" role="img" aria-label="テスト前チェックの 5 段階フロー">
+  <title>目視 → 短絡 → 電圧一致 → 電源分離 → 極性 の順で確認し、NG があれば組立フェーズに戻る</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 15px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 12px; fill: #444; }
+      .stage-a { fill: #fff9c4; stroke: #f9a825; stroke-width: 2; }
+      .stage-b { fill: #ffcdd2; stroke: #c62828; stroke-width: 2; }
+      .stage-c { fill: #e1f5fe; stroke: #0277bd; stroke-width: 2; }
+      .stage-d { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .stage-e { fill: #f3e5f5; stroke: #6a1b9a; stroke-width: 2; }
+      .goal    { fill: #e0f7fa; stroke: #00838f; stroke-width: 2.5; }
+      .assy    { fill: #ffebee; stroke: #c62828; stroke-width: 2; }
+      .arrow { stroke: #525252; stroke-width: 2; fill: none; }
+      .arrow-ng { stroke: #c62828; stroke-width: 2; fill: none; stroke-dasharray: 5 3; }
+      .marker { fill: #525252; }
+      .marker-red { fill: #c62828; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="390" y="28" text-anchor="middle" class="big">テスト前チェックの 5 段階（第 7 章の全体図）</text>
+
+  <!-- Left side: 5 sequential stages -->
+  <!-- Stage A: Visual -->
+  <rect x="40" y="60" width="180" height="55" rx="6" class="stage-a"/>
+  <text x="130" y="82" text-anchor="middle" class="big">(A) 目視確認</text>
+  <text x="130" y="102" text-anchor="middle" class="small">配線シートとの突き合わせ</text>
+
+  <line x1="130" y1="115" x2="130" y2="135" class="arrow"/>
+  <polygon points="130,140 125,130 135,130" class="marker"/>
+
+  <!-- Stage B: Short check -->
+  <rect x="40" y="140" width="180" height="55" rx="6" class="stage-b"/>
+  <text x="130" y="162" text-anchor="middle" class="big">(B) ショートチェック</text>
+  <text x="130" y="182" text-anchor="middle" class="small">VCC-GND 間 ブザー鳴らず</text>
+
+  <line x1="130" y1="195" x2="130" y2="215" class="arrow"/>
+  <polygon points="130,220 125,210 135,210" class="marker"/>
+
+  <!-- Stage C: Voltage match -->
+  <rect x="40" y="220" width="180" height="55" rx="6" class="stage-c"/>
+  <text x="130" y="242" text-anchor="middle" class="big">(C) 電圧一致</text>
+  <text x="130" y="262" text-anchor="middle" class="small">5V / 3.3V レールが正しく配線</text>
+
+  <line x1="130" y1="275" x2="130" y2="295" class="arrow"/>
+  <polygon points="130,300 125,290 135,290" class="marker"/>
+
+  <!-- Stage D: Power separation -->
+  <rect x="40" y="300" width="180" height="55" rx="6" class="stage-d"/>
+  <text x="130" y="322" text-anchor="middle" class="big">(D) 電源分離</text>
+  <text x="130" y="342" text-anchor="middle" class="small">V 分離 / GND 共通</text>
+
+  <line x1="130" y1="355" x2="130" y2="375" class="arrow"/>
+  <polygon points="130,380 125,370 135,370" class="marker"/>
+
+  <!-- Stage E: Polarity -->
+  <rect x="40" y="380" width="180" height="55" rx="6" class="stage-e"/>
+  <text x="130" y="402" text-anchor="middle" class="big">(E) 極性</text>
+  <text x="130" y="422" text-anchor="middle" class="small">LED / 電解 / ダイオード 等</text>
+
+  <!-- Center arrow to goal -->
+  <line x1="220" y1="408" x2="340" y2="408" class="arrow"/>
+  <polygon points="345,408 335,403 335,413" class="marker"/>
+
+  <!-- Goal box -->
+  <rect x="350" y="380" width="180" height="55" rx="6" class="goal"/>
+  <text x="440" y="402" text-anchor="middle" class="big">✓ 全 OK</text>
+  <text x="440" y="422" text-anchor="middle" class="small">→ 第 8 章（テスト中）へ</text>
+
+  <!-- Right side: NG loopback explanations -->
+  <!-- Assembly box (where to return) -->
+  <rect x="560" y="150" width="180" height="75" rx="6" class="assy"/>
+  <text x="650" y="175" text-anchor="middle" class="big" fill="#c62828">NG が出たら</text>
+  <text x="650" y="195" text-anchor="middle" class="small">第 6 章 組立フェーズ</text>
+  <text x="650" y="212" text-anchor="middle" class="small">に戻って修正</text>
+
+  <!-- NG arrows from each stage to assembly -->
+  <path d="M 220 88 C 350 88 450 88 560 180" class="arrow-ng"/>
+  <polygon points="557,177 566,181 561,189" class="marker-red"/>
+  <text x="460" y="80" class="small" fill="#c62828">NG: 配線ミス → 直す</text>
+
+  <path d="M 220 168 C 350 168 450 168 560 185" class="arrow-ng"/>
+  <polygon points="557,182 566,186 561,194" class="marker-red"/>
+  <text x="450" y="140" class="small" fill="#c62828">NG: ショートしている → ジャンパ抜き</text>
+
+  <path d="M 220 248 C 350 248 450 230 555 210" class="arrow-ng"/>
+  <polygon points="558,207 547,206 551,216" class="marker-red"/>
+  <text x="340" y="255" class="small" fill="#c62828">NG: 電圧不一致 → 配線直し</text>
+
+  <path d="M 220 328 C 350 328 450 280 555 218" class="arrow-ng"/>
+  <polygon points="558,215 547,214 551,224" class="marker-red"/>
+  <text x="340" y="335" class="small" fill="#c62828">NG: V 共通 or GND 分離 → 配線直し</text>
+
+  <!-- Summary box at bottom -->
+  <rect x="560" y="250" width="180" height="120" rx="6" fill="#f5f5f5" stroke="#888" stroke-width="1"/>
+  <text x="650" y="272" text-anchor="middle" class="big">ルール</text>
+  <text x="570" y="293" class="small">・ 1 項目でも NG なら</text>
+  <text x="570" y="308" class="small">　電源を入れない</text>
+  <text x="570" y="325" class="small">・ 全部 OK になるまで</text>
+  <text x="570" y="340" class="small">　A から順にやり直す</text>
+  <text x="570" y="357" class="small">・ スキップ禁止</text>
+</svg>

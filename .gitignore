@@ -1,0 +1,21 @@
+# MkDocs build output
+site/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Fritzing 作業ファイル（書き出した画像はコミット対象、作業中バックアップは除外）
+*.fzz.bak
+fritzing_autosave/

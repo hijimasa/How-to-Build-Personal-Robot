@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 360" role="img" aria-label="はめあいの 3 分類">
+  <title>すきま嵌め／中間嵌め／しまり嵌め — 軸と穴の組み合わせによる 3 種類のフィット</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .hole  { fill: #eceff1; stroke: #37474f; stroke-width: 2; }
+      .shaft { fill: #90a4ae; stroke: #37474f; stroke-width: 2; }
+      .panel { fill: #fafafa; stroke: #888; stroke-width: 1.5; }
+      .gap { stroke: #1565c0; stroke-width: 1.5; stroke-dasharray: 3 2; fill: none; }
+    </style>
+  </defs>
+
+  <text x="390" y="26" text-anchor="middle" class="big">はめあい 3 分類（軸と穴の組み合わせ）</text>
+
+  <!-- Panel 1: Clearance fit (すきま嵌め) -->
+  <g transform="translate(30,55)">
+    <rect x="0" y="0" width="230" height="280" rx="6" class="panel"/>
+    <text x="115" y="28" text-anchor="middle" class="big" fill="#2e7d32">すきま嵌め</text>
+    <text x="115" y="46" text-anchor="middle" class="small">（clearance fit）</text>
+
+    <!-- Hole (larger) -->
+    <circle cx="115" cy="130" r="55" class="hole"/>
+    <!-- Shaft (smaller) -->
+    <circle cx="115" cy="130" r="45" class="shaft"/>
+    <!-- Clearance arrow -->
+    <path d="M 170 130 L 185 130" class="gap"/>
+    <text x="190" y="135" class="small" fill="#1565c0">隙間</text>
+
+    <text x="115" y="215" text-anchor="middle" class="lbl">穴 ＞ 軸（隙間あり）</text>
+    <text x="115" y="235" text-anchor="middle" class="small">＜例＞</text>
+    <text x="115" y="250" text-anchor="middle" class="small">軸受け（ベアリング）</text>
+    <text x="115" y="265" text-anchor="middle" class="small">ねじと ねじ穴の通り</text>
+  </g>
+
+  <!-- Panel 2: Transition fit (中間嵌め) -->
+  <g transform="translate(275,55)">
+    <rect x="0" y="0" width="230" height="280" rx="6" class="panel"/>
+    <text x="115" y="28" text-anchor="middle" class="big" fill="#ef6c00">中間嵌め</text>
+    <text x="115" y="46" text-anchor="middle" class="small">（transition fit）</text>
+
+    <!-- Hole (almost same size) -->
+    <circle cx="115" cy="130" r="50" class="hole"/>
+    <!-- Shaft (same size, just inside) -->
+    <circle cx="115" cy="130" r="49" class="shaft"/>
+
+    <text x="115" y="215" text-anchor="middle" class="lbl">穴 ≒ 軸（ほぼ同寸）</text>
+    <text x="115" y="235" text-anchor="middle" class="small">＜例＞</text>
+    <text x="115" y="250" text-anchor="middle" class="small">位置決めピン</text>
+    <text x="115" y="265" text-anchor="middle" class="small">キー固定</text>
+  </g>
+
+  <!-- Panel 3: Interference fit (しまり嵌め) -->
+  <g transform="translate(520,55)">
+    <rect x="0" y="0" width="230" height="280" rx="6" class="panel"/>
+    <text x="115" y="28" text-anchor="middle" class="big" fill="#c62828">しまり嵌め</text>
+    <text x="115" y="46" text-anchor="middle" class="small">（interference fit）</text>
+
+    <!-- Hole (smaller than shaft, shown slightly deformed) -->
+    <circle cx="115" cy="130" r="48" class="hole"/>
+    <!-- Shaft (larger, squeezed in) -->
+    <circle cx="115" cy="130" r="52" class="shaft"/>
+
+    <text x="115" y="215" text-anchor="middle" class="lbl">穴 ＜ 軸（無理やり圧入）</text>
+    <text x="115" y="235" text-anchor="middle" class="small">＜例＞</text>
+    <text x="115" y="250" text-anchor="middle" class="small">ベアリングの筐体圧入</text>
+    <text x="115" y="265" text-anchor="middle" class="small">ローレット加工の軸</text>
+  </g>
+</svg>

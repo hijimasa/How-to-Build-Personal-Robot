@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" role="img" aria-label="モータ起動時のブラウンアウト現象：VCC がリセットしきい値を下回る">
+  <title>モータが起動すると突入電流で VCC が一瞬低下し、MCU のブラウンアウト検出が働いてリセットする</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 15px; font-weight: bold; fill: #222; }
+      .mono  { font-family: monospace; font-size: 12px; fill: #222; }
+      .axis  { stroke: #525252; stroke-width: 2; fill: none; }
+      .tick  { stroke: #525252; stroke-width: 1.2; fill: none; }
+      .grid  { stroke: #e0e0e0; stroke-width: 1; fill: none; }
+      .vcc   { stroke: #1565c0; stroke-width: 2.5; fill: none; }
+      .cur   { stroke: #ef6c00; stroke-width: 2.5; fill: none; stroke-dasharray: 0; }
+      .bo    { stroke: #c62828; stroke-width: 2; stroke-dasharray: 6 4; fill: none; }
+      .blue-t { fill: #1565c0; font-weight: bold; }
+      .orn-t  { fill: #ef6c00; font-weight: bold; }
+      .red-t  { fill: #c62828; font-weight: bold; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="360" y="28" text-anchor="middle" class="big">モータ起動時のブラウンアウト（USB バスパワー単電源）</text>
+
+  <!-- Plot area: 100,70 - 640,250  => width 540, height 180 -->
+  <rect x="100" y="70" width="540" height="180" fill="#fafafa" stroke="#cccccc" stroke-width="1"/>
+
+  <!-- Gridlines -->
+  <line x1="100" y1="115" x2="640" y2="115" class="grid"/>
+  <line x1="100" y1="160" x2="640" y2="160" class="grid"/>
+  <line x1="100" y1="205" x2="640" y2="205" class="grid"/>
+
+  <!-- Y-axis left: VCC (V) -->
+  <text x="70" y="84"  text-anchor="end" class="mono">5.0</text>
+  <text x="70" y="119" text-anchor="end" class="mono">4.5</text>
+  <text x="70" y="164" text-anchor="end" class="mono">4.0</text>
+  <text x="70" y="209" text-anchor="end" class="mono">3.5</text>
+  <text x="70" y="254" text-anchor="end" class="mono">3.0</text>
+  <text x="60" y="60"  text-anchor="end" class="big blue-t">VCC [V]</text>
+
+  <!-- Y-axis right: current (mA) -->
+  <text x="660" y="84"  class="mono">0</text>
+  <text x="660" y="119" class="mono">250</text>
+  <text x="660" y="164" class="mono">500</text>
+  <text x="660" y="209" class="mono">750</text>
+  <text x="660" y="254" class="mono">1000</text>
+  <text x="655" y="60"  class="big orn-t">I [mA]</text>
+
+  <!-- X-axis -->
+  <line x1="100" y1="250" x2="640" y2="250" class="axis"/>
+  <line x1="100" y1="70"  x2="100" y2="250" class="axis"/>
+  <line x1="640" y1="70"  x2="640" y2="250" class="axis"/>
+
+  <!-- X-axis ticks and labels -->
+  <line x1="100" y1="250" x2="100" y2="256" class="tick"/>
+  <line x1="235" y1="250" x2="235" y2="256" class="tick"/>
+  <line x1="370" y1="250" x2="370" y2="256" class="tick"/>
+  <line x1="505" y1="250" x2="505" y2="256" class="tick"/>
+  <line x1="640" y1="250" x2="640" y2="256" class="tick"/>
+  <text x="100" y="272" text-anchor="middle" class="mono">0</text>
+  <text x="235" y="272" text-anchor="middle" class="mono">100</text>
+  <text x="370" y="272" text-anchor="middle" class="mono">200</text>
+  <text x="505" y="272" text-anchor="middle" class="mono">300</text>
+  <text x="640" y="272" text-anchor="middle" class="mono">400</text>
+  <text x="370" y="294" text-anchor="middle" class="lbl">時間 [ms]</text>
+
+  <!-- Brownout threshold at 4.3V = y=124 -->
+  <line x1="100" y1="124" x2="640" y2="124" class="bo"/>
+  <text x="640" y="118" text-anchor="end" class="red-t" font-size="12">BOD しきい値 = 4.3 V</text>
+
+  <!-- VCC trace (blue) -->
+  <!-- 5.0V from 0 to 150ms, dip to 3.8V around 170ms, recover to 4.9V around 280ms, settle -->
+  <path d="M 100 70
+           L 210 70
+           C 230 70 235 225 260 225
+           C 285 225 290 85 360 85
+           L 640 85" class="vcc"/>
+
+  <!-- Current trace (orange) -->
+  <path d="M 100 250
+           L 210 250
+           C 220 250 230 95 260 95
+           C 290 95 310 180 360 180
+           L 640 180" class="cur"/>
+
+  <!-- Annotations on plot -->
+  <!-- Event markers -->
+  <line x1="210" y1="70" x2="210" y2="250" stroke="#888" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="210" y="58" text-anchor="middle" class="mono">モータ起動</text>
+
+  <line x1="360" y1="70" x2="360" y2="250" stroke="#888" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="360" y="58" text-anchor="middle" class="mono">回転安定</text>
+
+  <!-- Dip annotation -->
+  <text x="260" y="242" text-anchor="middle" class="red-t" font-size="13">ここで VCC &lt; 4.3 V → MCU リセット</text>
+
+  <!-- Legend -->
+  <rect x="110" y="315" width="520" height="48" fill="#ffffff" stroke="#cccccc" rx="4"/>
+  <line x1="125" y1="330" x2="160" y2="330" class="vcc"/>
+  <text x="168" y="335" class="lbl blue-t">VCC（ロジック電源の実測電圧）</text>
+  <line x1="125" y1="352" x2="160" y2="352" class="cur"/>
+  <text x="168" y="357" class="lbl orn-t">モータ電流</text>
+  <line x1="395" y1="341" x2="430" y2="341" class="bo"/>
+  <text x="438" y="346" class="lbl red-t">ATmega328P のデフォルト BOD しきい値</text>
+</svg>

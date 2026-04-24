@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 340" role="img" aria-label="LED：抵抗なし NG と 電流制限抵抗 OK の比較">
+  <title>LED を GPIO に直結する NG と、電流制限抵抗を入れた OK の回路比較</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .wire  { stroke: #525252; stroke-width: 2; fill: none; }
+      .body  { stroke: #525252; stroke-width: 2; fill: #ffffff; }
+      .board { stroke: #525252; stroke-width: 2; fill: #eceff1; }
+      .ng-panel { fill: #ffebee; stroke: #c62828; stroke-width: 2; }
+      .ok-panel { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .ng-text { fill: #c62828; font-weight: bold; }
+      .ok-text { fill: #2e7d32; font-weight: bold; }
+      .val   { font-family: monospace; font-size: 12px; font-weight: bold; fill: #c62828; }
+      .okval { font-family: monospace; font-size: 12px; font-weight: bold; fill: #2e7d32; }
+    </style>
+  </defs>
+
+  <text x="390" y="26" text-anchor="middle" class="big">LED 点灯回路：抵抗なし（NG） vs 電流制限抵抗あり（OK）</text>
+
+  <!-- Panel 1: NG -->
+  <g transform="translate(30,55)">
+    <rect x="0" y="0" width="360" height="270" rx="8" class="ng-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big ng-text">✗ GPIO 直結（抵抗なし）</text>
+
+    <!-- Arduino board -->
+    <rect x="30" y="70" width="120" height="160" rx="6" class="board"/>
+    <text x="90" y="95" text-anchor="middle" class="big">Arduino Uno</text>
+    <rect x="150" y="120" width="20" height="14" class="body"/>
+    <text x="145" y="131" text-anchor="end" class="small">D13</text>
+    <rect x="150" y="200" width="20" height="14" class="body"/>
+    <text x="145" y="211" text-anchor="end" class="small">GND</text>
+
+    <!-- Wire to LED -->
+    <line x1="170" y1="127" x2="240" y2="127" class="wire"/>
+    <!-- LED: dome+body+legs -->
+    <g transform="translate(240,110)">
+      <path d="M 0 30 A 15 15 0 0 1 30 30 Z" fill="#ef5350" stroke="#b71c1c" stroke-width="2"/>
+      <rect x="0" y="30" width="30" height="25" fill="#ef5350" stroke="#b71c1c" stroke-width="2"/>
+      <line x1="10" y1="55" x2="10" y2="90" stroke="#757575" stroke-width="2"/>
+      <line x1="20" y1="55" x2="20" y2="90" stroke="#757575" stroke-width="2"/>
+    </g>
+    <line x1="260" y1="200" x2="260" y2="215" class="wire"/>
+    <line x1="170" y1="207" x2="260" y2="207" class="wire"/>
+
+    <!-- Values -->
+    <text x="250" y="155" class="val">I = ?（制限なし）</text>
+
+    <!-- Explosion marker -->
+    <polygon points="265,130 270,115 275,135 285,120 283,140 295,138 280,148 292,160 275,155 278,175 265,160 253,172 253,155 240,160 255,148 243,135" fill="#ffcdd2" stroke="#c62828" stroke-width="2"/>
+
+    <text x="180" y="258" text-anchor="middle" class="small ng-text">GPIO 絶対最大 40 mA を 超えて破壊</text>
+  </g>
+
+  <!-- Panel 2: OK -->
+  <g transform="translate(410,55)">
+    <rect x="0" y="0" width="360" height="270" rx="8" class="ok-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big ok-text">✓ 電流制限抵抗あり</text>
+
+    <!-- Arduino board -->
+    <rect x="30" y="70" width="120" height="160" rx="6" class="board"/>
+    <text x="90" y="95" text-anchor="middle" class="big">Arduino Uno</text>
+    <rect x="150" y="120" width="20" height="14" class="body"/>
+    <text x="145" y="131" text-anchor="end" class="small">D13</text>
+    <rect x="150" y="200" width="20" height="14" class="body"/>
+    <text x="145" y="211" text-anchor="end" class="small">GND</text>
+
+    <!-- Wire to resistor -->
+    <line x1="170" y1="127" x2="190" y2="127" class="wire"/>
+    <!-- Resistor -->
+    <rect x="190" y="118" width="60" height="18" class="body" rx="2"/>
+    <text x="220" y="110" text-anchor="middle" class="small">330 Ω</text>
+    <line x1="250" y1="127" x2="280" y2="127" class="wire"/>
+
+    <!-- LED -->
+    <g transform="translate(280,110)">
+      <path d="M 0 30 A 15 15 0 0 1 30 30 Z" fill="#ef5350" stroke="#b71c1c" stroke-width="2"/>
+      <rect x="0" y="30" width="30" height="25" fill="#ef5350" stroke="#b71c1c" stroke-width="2"/>
+      <line x1="10" y1="55" x2="10" y2="90" stroke="#757575" stroke-width="2"/>
+      <line x1="20" y1="55" x2="20" y2="90" stroke="#757575" stroke-width="2"/>
+    </g>
+
+    <!-- Bottom wire -->
+    <line x1="300" y1="200" x2="300" y2="215" class="wire"/>
+    <line x1="170" y1="207" x2="300" y2="207" class="wire"/>
+
+    <!-- Values -->
+    <text x="220" y="155" class="okval">I = (5−2) / 330 ≒ 9 mA</text>
+    <text x="220" y="170" class="okval" font-size="11">GPIO 20 mA 定格内</text>
+
+    <text x="180" y="258" text-anchor="middle" class="small ok-text">データシート根拠の抵抗値で、LED も GPIO も守られる</text>
+  </g>
+</svg>

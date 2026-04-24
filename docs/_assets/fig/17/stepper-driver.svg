@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 340" role="img" aria-label="ステッピングモータドライバ A4988 の配線と V_REF">
+  <title>A4988 ステッピングモータドライバの配線：電流制限は V_REF 電圧で設定する</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 12px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .mono  { font-family: monospace; font-size: 12px; fill: #222; }
+      .wire  { stroke: #525252; stroke-width: 2; fill: none; }
+      .wire-sig { stroke: #1565c0; stroke-width: 2; fill: none; }
+      .wire-vm { stroke: #ef6c00; stroke-width: 2.5; fill: none; }
+      .wire-motor { stroke: #757575; stroke-width: 2; fill: none; }
+      .board { stroke: #525252; stroke-width: 2; fill: #eceff1; }
+      .driver { stroke: #525252; stroke-width: 2; fill: #fff8e1; }
+      .battery { stroke: #ef6c00; stroke-width: 2; fill: #fff3e0; }
+      .body  { stroke: #525252; stroke-width: 2; fill: #ffffff; }
+      .pot   { fill: #d7ccc8; stroke: #5d4037; stroke-width: 1.5; }
+    </style>
+  </defs>
+
+  <text x="390" y="25" text-anchor="middle" class="big">A4988 ステッピングモータドライバ：配線と V_REF による電流制限</text>
+
+  <!-- Arduino -->
+  <rect x="30" y="50" width="100" height="170" rx="4" class="board"/>
+  <text x="80" y="75" text-anchor="middle" class="big">Arduino</text>
+  <rect x="130" y="90" width="12" height="10" class="body"/>
+  <text x="125" y="99" text-anchor="end" class="small">D2</text>
+  <rect x="130" y="110" width="12" height="10" class="body"/>
+  <text x="125" y="119" text-anchor="end" class="small">D3</text>
+  <rect x="130" y="130" width="12" height="10" class="body"/>
+  <text x="125" y="139" text-anchor="end" class="small">5V</text>
+  <rect x="130" y="150" width="12" height="10" class="body"/>
+  <text x="125" y="159" text-anchor="end" class="small">GND</text>
+
+  <!-- A4988 driver -->
+  <rect x="220" y="50" width="160" height="230" rx="4" class="driver"/>
+  <text x="300" y="75" text-anchor="middle" class="big">A4988</text>
+
+  <!-- Logic side pins -->
+  <rect x="210" y="90" width="10" height="10" class="body"/>
+  <text x="205" y="99" text-anchor="end" class="small">STEP</text>
+  <rect x="210" y="110" width="10" height="10" class="body"/>
+  <text x="205" y="119" text-anchor="end" class="small">DIR</text>
+  <rect x="210" y="130" width="10" height="10" class="body"/>
+  <text x="205" y="139" text-anchor="end" class="small">V_DD</text>
+  <rect x="210" y="150" width="10" height="10" class="body"/>
+  <text x="205" y="159" text-anchor="end" class="small">GND</text>
+  <rect x="210" y="180" width="10" height="10" class="body"/>
+  <text x="205" y="189" text-anchor="end" class="small">RESET</text>
+  <rect x="210" y="200" width="10" height="10" class="body"/>
+  <text x="205" y="209" text-anchor="end" class="small">SLEEP</text>
+
+  <!-- Motor side -->
+  <rect x="380" y="100" width="10" height="10" class="body"/>
+  <text x="395" y="109" class="small">1A</text>
+  <rect x="380" y="120" width="10" height="10" class="body"/>
+  <text x="395" y="129" class="small">1B</text>
+  <rect x="380" y="150" width="10" height="10" class="body"/>
+  <text x="395" y="159" class="small">2A</text>
+  <rect x="380" y="170" width="10" height="10" class="body"/>
+  <text x="395" y="179" class="small">2B</text>
+
+  <!-- V_M (motor power) -->
+  <rect x="380" y="210" width="10" height="10" class="body"/>
+  <text x="395" y="219" class="small">V_M (8-35V)</text>
+  <rect x="380" y="240" width="10" height="10" class="body"/>
+  <text x="395" y="249" class="small">GND</text>
+
+  <!-- V_REF potentiometer on driver -->
+  <circle cx="300" cy="245" r="14" class="pot"/>
+  <line x1="300" y1="231" x2="300" y2="259" stroke="#5d4037" stroke-width="1"/>
+  <line x1="286" y1="245" x2="314" y2="245" stroke="#5d4037" stroke-width="1"/>
+  <text x="280" y="277" class="small">V_REF 可変抵抗</text>
+  <text x="270" y="290" class="small" fill="#c62828">（テスタで電圧実測）</text>
+
+  <!-- Arduino → driver wires -->
+  <line x1="142" y1="95" x2="210" y2="95" class="wire-sig"/>
+  <line x1="142" y1="115" x2="210" y2="115" class="wire-sig"/>
+  <line x1="142" y1="135" x2="210" y2="135" class="wire"/>
+  <line x1="142" y1="155" x2="210" y2="155" class="wire"/>
+
+  <!-- Battery -->
+  <rect x="580" y="40" width="100" height="70" rx="4" class="battery"/>
+  <text x="630" y="65" text-anchor="middle" class="big">12V</text>
+  <text x="630" y="85" text-anchor="middle" class="small">（ステッパ用）</text>
+
+  <rect x="576" y="58" width="10" height="10" class="body"/>
+  <text x="572" y="67" text-anchor="end" class="small">+</text>
+  <rect x="576" y="80" width="10" height="10" class="body"/>
+  <text x="572" y="89" text-anchor="end" class="small">−</text>
+
+  <!-- Battery → V_M -->
+  <path d="M 576 63 L 520 63 L 520 215 L 390 215" class="wire-vm"/>
+  <!-- Battery GND → driver GND (shared) -->
+  <path d="M 576 85 L 530 85 L 530 245 L 390 245" class="wire"/>
+
+  <!-- Stepper motor -->
+  <circle cx="620" cy="180" r="45" class="body"/>
+  <text x="620" y="174" text-anchor="middle" class="big">STEP</text>
+  <text x="620" y="190" text-anchor="middle" class="big">MOTOR</text>
+
+  <!-- Driver motor outputs to motor (4 wires) -->
+  <path d="M 390 105 L 570 150" class="wire-motor"/>
+  <path d="M 390 125 L 570 165" class="wire-motor"/>
+  <path d="M 390 155 L 570 195" class="wire-motor"/>
+  <path d="M 390 175 L 570 210" class="wire-motor"/>
+
+  <text x="480" y="130" class="small">4 本の</text>
+  <text x="480" y="145" class="small">モータ線</text>
+
+  <text x="390" y="315" text-anchor="middle" class="small">電流制限：可変抵抗を回して V_REF を目標値に設定 → モータ電流 = V_REF / (8 × R_SENSE)</text>
+</svg>

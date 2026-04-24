@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 460" role="img" aria-label="電気デバッグの 4 つの武器と使い分け">
+  <title>デバッグの 4 つの武器：GND 確認、VCC 実測、シリアル print、分離テスト</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 12px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 15px; font-weight: bold; fill: #222; }
+      .mid   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; font-weight: bold; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .tool-gnd { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .tool-vcc { fill: #ffebee; stroke: #c62828; stroke-width: 2; }
+      .tool-ser { fill: #e1f5fe; stroke: #0277bd; stroke-width: 2; }
+      .tool-iso { fill: #fff3e0; stroke: #ef6c00; stroke-width: 2; }
+      .t-gnd { fill: #2e7d32; font-weight: bold; }
+      .t-vcc { fill: #c62828; font-weight: bold; }
+      .t-ser { fill: #0277bd; font-weight: bold; }
+      .t-iso { fill: #ef6c00; font-weight: bold; }
+      .panel { fill: #fafafa; stroke: #888; stroke-width: 1.5; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="410" y="26" text-anchor="middle" class="big">デバッグの 4 つの武器 — テスタとシリアルだけで大半の不具合は追える</text>
+
+  <!-- Panel 1: GND check (top-left) -->
+  <rect x="30" y="55" width="370" height="180" rx="8" class="tool-gnd"/>
+  <text x="50" y="82" class="big t-gnd">① GND 確認（導通モード）</text>
+  <text x="50" y="104" class="lbl">使うもの：テスタ（導通モード、ブザー付き）</text>
+  <text x="50" y="128" class="mid">こんな症状に効く：</text>
+  <text x="60" y="148" class="small">・ マイコンに書き込めない</text>
+  <text x="60" y="164" class="small">・ シリアル出力が全く出ない</text>
+  <text x="60" y="180" class="small">・ モータドライバが誤動作する（電源分離時の GND 未共通）</text>
+  <text x="60" y="196" class="small">・ センサ値がデタラメ</text>
+  <text x="50" y="222" class="small t-gnd">手順：電源 OFF → マイコン GND と 各部品 GND の導通を 1 個ずつ確認</text>
+
+  <!-- Panel 2: VCC measurement (top-right) -->
+  <rect x="420" y="55" width="370" height="180" rx="8" class="tool-vcc"/>
+  <text x="440" y="82" class="big t-vcc">② VCC 実測（DCV モード）</text>
+  <text x="440" y="104" class="lbl">使うもの：テスタ（DCV モード）／MIN HOLD があればなお可</text>
+  <text x="440" y="128" class="mid">こんな症状に効く：</text>
+  <text x="450" y="148" class="small">・ ブラウンアウトループ（モータ駆動時にリセット繰り返し）</text>
+  <text x="450" y="164" class="small">・ 発熱が大きい（電流が予想以上に流れている）</text>
+  <text x="450" y="180" class="small">・ LED が暗い、モータが弱い</text>
+  <text x="450" y="196" class="small">・ 動いたり動かなかったりする（電源不安定）</text>
+  <text x="440" y="222" class="small t-vcc">手順：電源 ON → 各 IC の VCC ピンで実測値が公称 ±5% に収まるか</text>
+
+  <!-- Panel 3: Serial print (bottom-left) -->
+  <rect x="30" y="250" width="370" height="180" rx="8" class="tool-ser"/>
+  <text x="50" y="277" class="big t-ser">③ シリアル print</text>
+  <text x="50" y="299" class="lbl">使うもの：Arduino IDE シリアルモニタ + `Serial.println()`</text>
+  <text x="50" y="323" class="mid">こんな症状に効く：</text>
+  <text x="60" y="343" class="small">・ スケッチが途中で止まっている（どこまで進んだか）</text>
+  <text x="60" y="359" class="small">・ センサ値が想定と違う（実測値を目で確認）</text>
+  <text x="60" y="375" class="small">・ 条件分岐が期待どおりに通っていない</text>
+  <text x="60" y="391" class="small">・ ブラウンアウトの検出（起動メッセージの繰り返し）</text>
+  <text x="50" y="417" class="small t-ser">手順：怪しい箇所に println を挟んで、実行時の値と順序を可視化</text>
+
+  <!-- Panel 4: Isolation test (bottom-right) -->
+  <rect x="420" y="250" width="370" height="180" rx="8" class="tool-iso"/>
+  <text x="440" y="277" class="big t-iso">④ 分離テスト</text>
+  <text x="440" y="299" class="lbl">使うもの：手とジャンパだけ（物理的に外す or 追加する）</text>
+  <text x="440" y="323" class="mid">こんな症状に効く：</text>
+  <text x="450" y="343" class="small">・ 複数部品を積んだら動かなくなった（どれが原因か）</text>
+  <text x="450" y="359" class="small">・ 電源を入れると LED が暗くなる（どれが大電流食いか）</text>
+  <text x="450" y="375" class="small">・ 書き込みは通るがスケッチが暴走する</text>
+  <text x="450" y="391" class="small">・ I2C バス全体が止まる（どのデバイスがバスを握ったか）</text>
+  <text x="440" y="417" class="small t-iso">手順：部品を 1 つずつ外す／追加する。動く状態との差分で原因を絞る</text>
+</svg>

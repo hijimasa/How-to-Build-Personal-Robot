@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 360" role="img" aria-label="モータマウント：片持ち vs 両持ち">
+  <title>モータマウントの片持ち支持と両持ち支持：軸先端の垂れ方が違う</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .mount { fill: #fff3e0; stroke: #ef6c00; stroke-width: 2; }
+      .motor { fill: #546e7a; stroke: #263238; stroke-width: 2; }
+      .motor-tilt { fill: #546e7a; stroke: #263238; stroke-width: 2; }
+      .shaft { fill: #90a4ae; stroke: #37474f; stroke-width: 1.5; }
+      .wheel { fill: #eceff1; stroke: #37474f; stroke-width: 2; }
+      .bearing { fill: #1565c0; stroke: #0d47a1; stroke-width: 2; }
+      .ng-panel { fill: #ffebee; stroke: #c62828; stroke-width: 2; }
+      .ok-panel { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .ng-text { fill: #c62828; font-weight: bold; }
+      .ok-text { fill: #2e7d32; font-weight: bold; }
+      .force { stroke: #c62828; stroke-width: 2.5; fill: #c62828; }
+    </style>
+  </defs>
+
+  <text x="390" y="26" text-anchor="middle" class="big">モータマウント：片持ち vs 両持ち（軸受あり）</text>
+
+  <!-- Panel 1: Cantilever (NG) -->
+  <g transform="translate(30,55)">
+    <rect x="0" y="0" width="360" height="280" rx="8" class="ng-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big ng-text">✗ 片持ちマウント（軸受なし）</text>
+
+    <!-- Mount bracket (single plate on left) -->
+    <rect x="60" y="100" width="10" height="100" class="mount"/>
+    <!-- Motor, slightly tilted due to unsupported shaft -->
+    <g transform="rotate(3 130 150)">
+      <rect x="70" y="120" width="80" height="60" class="motor-tilt"/>
+      <!-- Shaft extending to the right, tilting down -->
+      <rect x="150" y="145" width="130" height="10" class="shaft"/>
+    </g>
+    <!-- Wheel on tilted shaft -->
+    <g transform="rotate(3 130 150)">
+      <circle cx="275" cy="150" r="35" class="wheel"/>
+    </g>
+
+    <!-- Gravity force on wheel -->
+    <line x1="295" y1="120" x2="295" y2="155" stroke="#c62828" stroke-width="2" fill="none"/>
+    <polygon points="295,155 290,145 300,145" class="force"/>
+    <text x="310" y="135" class="small ng-text">重力</text>
+
+    <!-- Bending moment -->
+    <path d="M 150 210 Q 220 220 285 195" stroke="#c62828" stroke-width="1.5" fill="none" stroke-dasharray="3 2"/>
+    <text x="180" y="235" text-anchor="middle" class="small ng-text">モーメント荷重で</text>
+    <text x="180" y="250" text-anchor="middle" class="small ng-text">軸が下に垂れる</text>
+    <text x="180" y="265" text-anchor="middle" class="small">→ ベアリング過負荷、異音、短寿命</text>
+  </g>
+
+  <!-- Panel 2: Double-supported (OK) -->
+  <g transform="translate(410,55)">
+    <rect x="0" y="0" width="360" height="280" rx="8" class="ok-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big ok-text">✓ 両持ちマウント（軸受あり）</text>
+
+    <!-- Mount bracket (left side) -->
+    <rect x="30" y="100" width="10" height="100" class="mount"/>
+    <!-- Motor -->
+    <rect x="40" y="120" width="80" height="60" class="motor"/>
+    <!-- Shaft going right (horizontal) -->
+    <rect x="120" y="145" width="170" height="10" class="shaft"/>
+    <!-- Right support with bearing -->
+    <rect x="290" y="100" width="10" height="100" class="mount"/>
+    <circle cx="295" cy="150" r="12" class="bearing"/>
+    <circle cx="295" cy="150" r="6" fill="#90a4ae"/>
+
+    <!-- Wheel between motor and bearing -->
+    <circle cx="230" cy="150" r="35" class="wheel"/>
+
+    <!-- Gravity force -->
+    <line x1="230" y1="110" x2="230" y2="112" stroke="#2e7d32" stroke-width="2" fill="none"/>
+    <text x="245" y="115" class="small ok-text">重力</text>
+
+    <!-- No bending indication -->
+    <text x="180" y="235" text-anchor="middle" class="small ok-text">荷重が 両端の 2 支点 で受け止められる</text>
+    <text x="180" y="250" text-anchor="middle" class="small">→ 軸の曲がりなし、ベアリング寿命が伸びる</text>
+    <text x="180" y="265" text-anchor="middle" class="small">→ 静粛、精度 ○</text>
+  </g>
+</svg>

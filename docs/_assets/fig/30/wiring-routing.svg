@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 360" role="img" aria-label="配線取り回しの NG と OK">
+  <title>配線の機械的管理：可動部に近い NG 取り回しと、可動部を避けた OK 取り回し</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .body { fill: #eceff1; stroke: #37474f; stroke-width: 2; }
+      .wheel { fill: #424242; stroke: #212121; stroke-width: 2; }
+      .wire-red { stroke: #c62828; stroke-width: 3; fill: none; }
+      .wire-black { stroke: #212121; stroke-width: 3; fill: none; }
+      .wire-tied { stroke: #c62828; stroke-width: 3; fill: none; }
+      .tie { fill: #ef6c00; stroke: #e65100; stroke-width: 1; }
+      .ng-panel { fill: #ffebee; stroke: #c62828; stroke-width: 2; }
+      .ok-panel { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .ng-text { fill: #c62828; font-weight: bold; }
+      .ok-text { fill: #2e7d32; font-weight: bold; }
+      .mark-danger { fill: #ffeb3b; stroke: #f57f17; stroke-width: 1.5; }
+      .rot { fill: none; stroke: #c62828; stroke-width: 1.5; stroke-dasharray: 3 2; }
+    </style>
+  </defs>
+
+  <text x="390" y="26" text-anchor="middle" class="big">配線の取り回し：可動部との関係で耐久性が決まる</text>
+
+  <!-- Panel 1: Bad routing -->
+  <g transform="translate(30,55)">
+    <rect x="0" y="0" width="360" height="280" rx="8" class="ng-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big ng-text">✗ 配線が車輪の近くを通る</text>
+
+    <!-- Body -->
+    <rect x="50" y="120" width="260" height="60" class="body"/>
+    <text x="180" y="155" text-anchor="middle" class="small">マイコン基板</text>
+
+    <!-- Wheels -->
+    <circle cx="70" cy="200" r="25" class="wheel"/>
+    <circle cx="290" cy="200" r="25" class="wheel"/>
+    <!-- Rotation indicator -->
+    <path d="M 50 170 A 20 20 0 0 0 50 210" class="rot"/>
+    <polygon points="50,210 54,202 44,202" fill="#c62828"/>
+
+    <!-- Wires trailing loose, passing very close to wheel -->
+    <path d="M 90 180 Q 80 200 65 215" class="wire-red"/>
+    <path d="M 95 180 Q 85 200 75 215" class="wire-black"/>
+
+    <!-- Rubbing marker -->
+    <circle cx="68" cy="208" r="10" class="mark-danger"/>
+    <text x="68" y="213" text-anchor="middle" class="small ng-text" font-weight="bold">擦</text>
+
+    <!-- Labels -->
+    <text x="75" y="245" class="small ng-text">被覆が擦れて断線 or ショート</text>
+
+    <!-- Loose wire hanging -->
+    <path d="M 200 180 Q 180 220 160 240 Q 150 250 145 250" class="wire-black"/>
+    <text x="215" y="250" class="small ng-text">緩み → 可動部に巻き込み</text>
+
+    <text x="180" y="270" text-anchor="middle" class="small">稼働中の摩擦・振動で被覆が削れる</text>
+  </g>
+
+  <!-- Panel 2: Good routing -->
+  <g transform="translate(410,55)">
+    <rect x="0" y="0" width="360" height="280" rx="8" class="ok-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big ok-text">✓ 可動部を避け、束ねて固定</text>
+
+    <!-- Body -->
+    <rect x="50" y="120" width="260" height="60" class="body"/>
+    <text x="180" y="155" text-anchor="middle" class="small">マイコン基板</text>
+
+    <!-- Wheels -->
+    <circle cx="70" cy="200" r="25" class="wheel"/>
+    <circle cx="290" cy="200" r="25" class="wheel"/>
+
+    <!-- Wires routed upward and to the side, away from wheels -->
+    <path d="M 90 180 Q 90 140 110 130" class="wire-red"/>
+    <path d="M 95 180 Q 95 145 112 133" class="wire-black"/>
+    <!-- Cable tie -->
+    <rect x="106" y="128" width="12" height="8" rx="1" class="tie"/>
+
+    <!-- Bundled bundle running along the top-side, protected -->
+    <path d="M 110 130 Q 180 110 260 130" class="wire-red"/>
+    <path d="M 112 133 Q 180 113 258 133" class="wire-black"/>
+    <!-- More ties -->
+    <rect x="176" y="108" width="12" height="8" rx="1" class="tie"/>
+    <rect x="254" y="128" width="12" height="8" rx="1" class="tie"/>
+
+    <!-- Labels -->
+    <text x="180" y="95" text-anchor="middle" class="small ok-text">ケーブルタイで束ねて、</text>
+    <text x="180" y="108" text-anchor="middle" class="small ok-text">筐体天面に固定</text>
+
+    <!-- Service loop notation -->
+    <path d="M 290 180 Q 300 170 310 175" class="wire-red"/>
+    <text x="325" y="175" class="small" fill="#2e7d32">余裕（サービスループ）</text>
+
+    <text x="180" y="260" text-anchor="middle" class="small">・可動部から 10 mm 以上離す</text>
+    <text x="180" y="275" text-anchor="middle" class="small">・10〜15 cm ごとにタイで固定</text>
+  </g>
+</svg>

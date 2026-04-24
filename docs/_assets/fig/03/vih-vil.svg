@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 340" role="img" aria-label="デジタル入力の V_IH と V_IL しきい値">
+  <title>デジタル入力電圧と論理判定：V_IL 以下は LOW、V_IH 以上は HIGH、中間は不定領域</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 15px; font-weight: bold; fill: #222; }
+      .mono  { font-family: "Consolas", "SF Mono", monospace; font-size: 13px; fill: #222; }
+      .axis  { stroke: #525252; stroke-width: 2; fill: none; }
+      .tick  { stroke: #525252; stroke-width: 1.5; fill: none; }
+      .low-z { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 1.5; }
+      .mid-z { fill: #ffebee; stroke: #c62828; stroke-width: 1.5; }
+      .high-z{ fill: #e8f5e9; stroke: #2e7d32; stroke-width: 1.5; }
+      .green { fill: #2e7d32; font-weight: bold; }
+      .red   { fill: #c62828; font-weight: bold; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle" class="big">デジタル入力：V_IN によって HIGH / LOW / 不定 が決まる</text>
+
+  <!-- 3 zones (stacked horizontally) -->
+  <!-- LOW zone: 0V ~ V_IL -->
+  <rect x="80"  y="90" width="260" height="70" class="low-z"/>
+  <!-- Indeterminate zone -->
+  <rect x="340" y="90" width="120" height="70" class="mid-z"/>
+  <!-- HIGH zone -->
+  <rect x="460" y="90" width="160" height="70" class="high-z"/>
+
+  <!-- Zone labels -->
+  <text x="210" y="122" text-anchor="middle" class="big green">LOW として読む</text>
+  <text x="210" y="144" text-anchor="middle" class="lbl">（確実に 0 と判定）</text>
+
+  <text x="400" y="122" text-anchor="middle" class="big red">不定領域</text>
+  <text x="400" y="144" text-anchor="middle" class="lbl">（HIGH/LOW どちらで読まれるか不明）</text>
+
+  <text x="540" y="122" text-anchor="middle" class="big green">HIGH として読む</text>
+  <text x="540" y="144" text-anchor="middle" class="lbl">（確実に 1 と判定）</text>
+
+  <!-- Axis -->
+  <line x1="80"  y1="200" x2="630" y2="200" class="axis"/>
+  <polygon points="630,200 620,195 620,205" fill="#525252"/>
+  <text x="644" y="204" class="lbl">V_IN</text>
+
+  <!-- Ticks at 0, V_IL, V_IH, V_CC -->
+  <line x1="80"  y1="195" x2="80"  y2="210" class="tick"/>
+  <line x1="340" y1="195" x2="340" y2="210" class="tick"/>
+  <line x1="460" y1="195" x2="460" y2="210" class="tick"/>
+  <line x1="620" y1="195" x2="620" y2="210" class="tick"/>
+
+  <!-- Tick labels -->
+  <text x="80"  y="228" text-anchor="middle" class="mono">0 V</text>
+  <text x="340" y="228" text-anchor="middle" class="mono">V_IL</text>
+  <text x="460" y="228" text-anchor="middle" class="mono">V_IH</text>
+  <text x="620" y="228" text-anchor="middle" class="mono">V_CC</text>
+
+  <!-- Example values (ATmega328P @ 5V) -->
+  <text x="80"  y="250" text-anchor="middle" class="lbl">(0.0 V)</text>
+  <text x="340" y="250" text-anchor="middle" class="lbl">(1.5 V)</text>
+  <text x="460" y="250" text-anchor="middle" class="lbl">(3.0 V)</text>
+  <text x="620" y="250" text-anchor="middle" class="lbl">(5.0 V)</text>
+
+  <!-- Dashed connectors -->
+  <line x1="340" y1="160" x2="340" y2="195" stroke="#c62828" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="460" y1="160" x2="460" y2="195" stroke="#2e7d32" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+  <!-- Caption -->
+  <text x="350" y="290" text-anchor="middle" class="lbl">例：ATmega328P @ V_CC = 5 V のとき V_IL ≦ 0.3 × V_CC = 1.5 V、V_IH ≧ 0.6 × V_CC = 3.0 V</text>
+  <text x="350" y="310" text-anchor="middle" class="lbl">入力電圧が 1.5〜3.0 V の範囲に長時間留まると、誤判定・貫通電流による発熱を招く（浮き入力は避ける）。</text>
+</svg>

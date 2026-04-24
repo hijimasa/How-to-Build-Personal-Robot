@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 340" role="img" aria-label="工具アクセスの確保：NG と OK の比較">
+  <title>ねじは付けたが工具が入らない NG と、工具の通り道を確保した OK の比較</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 12px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .mono  { font-family: monospace; font-size: 11px; fill: #222; }
+      .wall  { fill: #cfd8dc; stroke: #455a64; stroke-width: 2; }
+      .motor { fill: #546e7a; stroke: #263238; stroke-width: 2; }
+      .screw-head { fill: #90a4ae; stroke: #37474f; stroke-width: 1.5; }
+      .driver-shaft { fill: #ff9800; stroke: #e65100; stroke-width: 1.5; }
+      .driver-handle { fill: #455a64; stroke: #263238; stroke-width: 2; }
+      .ng-panel { fill: #ffebee; stroke: #c62828; stroke-width: 2; }
+      .ok-panel { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .ng-text { fill: #c62828; font-weight: bold; }
+      .ok-text { fill: #2e7d32; font-weight: bold; }
+      .dim { stroke: #1565c0; stroke-width: 1.2; fill: none; }
+      .dim-text { fill: #1565c0; font-weight: bold; font-family: system-ui, sans-serif; font-size: 12px; }
+      .collision { fill: #ffeb3b; stroke: #f57f17; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <text x="390" y="25" text-anchor="middle" class="big">ねじは付けた／でも工具が入らない（NG） vs 工具の通り道を確保（OK）</text>
+
+  <!-- Panel 1: NG - driver hits wall -->
+  <g transform="translate(30,55)">
+    <rect x="0" y="0" width="360" height="270" rx="8" class="ng-panel"/>
+    <text x="180" y="25" text-anchor="middle" class="big ng-text">✗ 工具が入らない設計</text>
+
+    <!-- Side walls / adjacent part -->
+    <rect x="50" y="90" width="20" height="150" class="wall"/>
+    <text x="45" y="105" text-anchor="end" class="small">壁（隣の部品）</text>
+
+    <rect x="280" y="90" width="20" height="150" class="wall"/>
+    <text x="305" y="105" class="small">壁</text>
+
+    <!-- Motor/part inside the cavity -->
+    <rect x="100" y="180" width="160" height="60" class="motor"/>
+    <text x="180" y="215" text-anchor="middle" class="small" fill="#eceff1">モータ</text>
+
+    <!-- Screw head at top of motor (recessed) -->
+    <rect x="170" y="170" width="20" height="12" class="screw-head"/>
+    <text x="180" y="155" text-anchor="middle" class="mono">M3 ねじ</text>
+
+    <!-- Driver trying to reach - blocked at angle -->
+    <g transform="rotate(-30 180 100)">
+      <rect x="170" y="50" width="20" height="80" class="driver-handle"/>
+      <rect x="176" y="130" width="8" height="45" class="driver-shaft"/>
+    </g>
+    <!-- Collision marker -->
+    <circle cx="135" cy="120" r="10" class="collision"/>
+    <text x="135" y="124" text-anchor="middle" class="small" font-weight="bold">!</text>
+
+    <!-- Measurement: clearance too small -->
+    <line x1="70" y1="265" x2="100" y2="265" class="dim"/>
+    <line x1="260" y1="265" x2="280" y2="265" class="dim"/>
+    <text x="100" y="261" class="dim-text">10 mm</text>
+    <text x="260" y="261" class="dim-text">10 mm</text>
+
+    <text x="180" y="255" text-anchor="middle" class="small ng-text">壁までの隙間が 10 mm 以下 → ドライバが斜めに当たる</text>
+  </g>
+
+  <!-- Panel 2: OK -->
+  <g transform="translate(410,55)">
+    <rect x="0" y="0" width="360" height="270" rx="8" class="ok-panel"/>
+    <text x="180" y="25" text-anchor="middle" class="big ok-text">✓ 工具アクセスを確保</text>
+
+    <!-- Side walls, wider spacing -->
+    <rect x="30" y="90" width="15" height="150" class="wall"/>
+    <rect x="315" y="90" width="15" height="150" class="wall"/>
+
+    <!-- Motor inside with clearance -->
+    <rect x="100" y="180" width="160" height="60" class="motor"/>
+    <text x="180" y="215" text-anchor="middle" class="small" fill="#eceff1">モータ</text>
+
+    <!-- Screw head on top -->
+    <rect x="170" y="170" width="20" height="12" class="screw-head"/>
+
+    <!-- Driver straight down -->
+    <rect x="170" y="40" width="20" height="85" class="driver-handle"/>
+    <rect x="176" y="125" width="8" height="45" class="driver-shaft"/>
+
+    <!-- Measurement: good clearance -->
+    <line x1="45" y1="265" x2="100" y2="265" class="dim"/>
+    <line x1="260" y1="265" x2="315" y2="265" class="dim"/>
+    <text x="72" y="261" class="dim-text">55 mm</text>
+    <text x="288" y="261" class="dim-text">55 mm</text>
+
+    <text x="180" y="160" text-anchor="middle" class="small ok-text">垂直にドライバが入る</text>
+    <text x="180" y="255" text-anchor="middle" class="small">ねじ周りに 一辺 30 mm 以上の作業空間を確保する</text>
+  </g>
+</svg>

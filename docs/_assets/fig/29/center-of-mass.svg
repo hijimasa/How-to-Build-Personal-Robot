@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 360" role="img" aria-label="重心の高低と転倒しやすさ">
+  <title>同じロボットでも、重心位置で転倒しやすさが大きく変わる</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .body { fill: #eceff1; stroke: #37474f; stroke-width: 2; }
+      .battery { fill: #ef6c00; stroke: #e65100; stroke-width: 2; }
+      .motor { fill: #546e7a; stroke: #263238; stroke-width: 2; }
+      .mcu { fill: #2e7d32; stroke: #1b5e20; stroke-width: 2; }
+      .wheel { fill: #424242; stroke: #212121; stroke-width: 2; }
+      .cog { fill: #c62828; stroke: #c62828; }
+      .cog-green { fill: #2e7d32; stroke: #2e7d32; }
+      .force { stroke: #c62828; stroke-width: 2; fill: none; }
+      .ok-panel { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .ng-panel { fill: #ffebee; stroke: #c62828; stroke-width: 2; }
+      .ok-text { fill: #2e7d32; font-weight: bold; }
+      .ng-text { fill: #c62828; font-weight: bold; }
+    </style>
+  </defs>
+
+  <text x="390" y="26" text-anchor="middle" class="big">重心が高いか低いかで、加減速時の安定性が決まる</text>
+
+  <!-- Panel 1: High CoG (NG) -->
+  <g transform="translate(30,55)">
+    <rect x="0" y="0" width="360" height="280" rx="8" class="ng-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big ng-text">✗ 重心 高（電池が上）</text>
+
+    <!-- Base (body) -->
+    <rect x="85" y="180" width="190" height="30" class="body"/>
+    <!-- MCU inside body -->
+    <rect x="100" y="185" width="60" height="15" class="mcu"/>
+    <!-- Motors at base -->
+    <rect x="170" y="195" width="40" height="15" class="motor"/>
+
+    <!-- Battery on TOP -->
+    <rect x="130" y="100" width="100" height="50" class="battery"/>
+    <text x="180" y="130" text-anchor="middle" class="small" fill="#ffffff">電池</text>
+
+    <!-- Wheels -->
+    <circle cx="100" cy="230" r="20" class="wheel"/>
+    <circle cx="260" cy="230" r="20" class="wheel"/>
+
+    <!-- Center of mass marker (high) -->
+    <circle cx="180" cy="130" r="6" class="cog"/>
+    <text x="180" y="90" text-anchor="middle" class="small ng-text">重心</text>
+
+    <!-- Tilt during acceleration -->
+    <g transform="rotate(-12 180 230)">
+      <line x1="180" y1="230" x2="180" y2="130" stroke="#c62828" stroke-width="1" stroke-dasharray="3 2"/>
+    </g>
+
+    <!-- Arrow showing tipping -->
+    <path d="M 280 140 Q 310 170 290 200" class="force"/>
+    <polygon points="290,200 285,192 295,193" fill="#c62828"/>
+    <text x="305" y="175" class="small ng-text">すぐ 転倒</text>
+
+    <text x="180" y="265" text-anchor="middle" class="small">加速・減速で前後に傾きやすい</text>
+  </g>
+
+  <!-- Panel 2: Low CoG (OK) -->
+  <g transform="translate(410,55)">
+    <rect x="0" y="0" width="360" height="280" rx="8" class="ok-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big ok-text">✓ 重心 低（電池が底）</text>
+
+    <!-- Base (body) - shorter, to accommodate battery at bottom -->
+    <rect x="85" y="160" width="190" height="30" class="body"/>
+    <!-- MCU on top of body (light) -->
+    <rect x="100" y="120" width="60" height="15" class="mcu"/>
+    <!-- Motors at base -->
+    <rect x="170" y="170" width="40" height="15" class="motor"/>
+
+    <!-- Battery at BOTTOM (inside body, low) -->
+    <rect x="110" y="195" width="140" height="30" class="battery"/>
+    <text x="180" y="215" text-anchor="middle" class="small" fill="#ffffff">電池（底板付近）</text>
+
+    <!-- Wheels -->
+    <circle cx="100" cy="235" r="20" class="wheel"/>
+    <circle cx="260" cy="235" r="20" class="wheel"/>
+
+    <!-- Center of mass marker (low) -->
+    <circle cx="180" cy="210" r="6" class="cog-green"/>
+    <text x="220" y="215" class="small ok-text">重心</text>
+
+    <!-- No tilt -->
+    <text x="180" y="265" text-anchor="middle" class="small ok-text">加減速しても姿勢が安定</text>
+  </g>
+</svg>

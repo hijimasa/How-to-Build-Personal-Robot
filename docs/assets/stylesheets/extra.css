@@ -1,0 +1,31 @@
+/* 本書専用のちょっとした調整。
+   v1 時点では最小限の上書きのみ行う。必要に応じて後から増やす。 */
+
+/* admonition「ボード差分」のカスタム定義。
+   mkdocs-material のデフォルトでは info 系のアイコン・色を流用する。 */
+:root {
+  --md-admonition-icon--board-diff: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3h18v2H3V3m0 4h18v2H3V7m0 4h12v2H3v-2m0 4h18v2H3v-2m0 4h12v2H3v-2z"/></svg>');
+}
+
+.md-typeset .admonition.board-diff,
+.md-typeset details.board-diff {
+  border-color: rgb(0, 150, 136);
+}
+
+.md-typeset .board-diff > .admonition-title,
+.md-typeset .board-diff > summary {
+  background-color: rgba(0, 150, 136, 0.1);
+}
+
+.md-typeset .board-diff > .admonition-title::before,
+.md-typeset .board-diff > summary::before {
+  background-color: rgb(0, 150, 136);
+  -webkit-mask-image: var(--md-admonition-icon--board-diff);
+          mask-image: var(--md-admonition-icon--board-diff);
+}
+
+/* データシートの引用・抜粋部分を少し際立たせる */
+.md-typeset blockquote.datasheet {
+  border-left-color: rgb(255, 152, 0);
+  background-color: rgba(255, 152, 0, 0.06);
+}

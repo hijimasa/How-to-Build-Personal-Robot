@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 420" role="img" aria-label="はんだ付け：良い／悪い／ブリッジ の断面図比較">
+  <title>はんだ付けの品質：良い（富士山型）／イモはんだ（玉状）／ブリッジ（隣接ランド短絡）</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 15px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 12px; fill: #444; }
+      .pcb   { fill: #388e3c; stroke: #1b5e20; stroke-width: 1; }
+      .pad   { fill: #bf8f3d; stroke: #6d4c0c; stroke-width: 1; }
+      .lead  { fill: #b0bec5; stroke: #37474f; stroke-width: 1.5; }
+      .solder-good { fill: #90a4ae; stroke: #37474f; stroke-width: 1.5; }
+      .solder-cold { fill: #cfd8dc; stroke: #546e7a; stroke-width: 1.5; }
+      .solder-bridge { fill: #90a4ae; stroke: #37474f; stroke-width: 1.5; }
+      .ok-panel { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .ng-panel { fill: #ffebee; stroke: #c62828; stroke-width: 2; }
+      .ok-text { fill: #2e7d32; font-weight: bold; }
+      .ng-text { fill: #c62828; font-weight: bold; }
+      .arrow { stroke: #444; stroke-width: 1.2; fill: none; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="390" y="25" text-anchor="middle" class="big">はんだ付け 3 パターン（断面図・ピンがランドから立ち上がる向き）</text>
+
+  <!-- ========== Panel 1: GOOD ========== -->
+  <g transform="translate(30,60)">
+    <rect x="0" y="0" width="230" height="280" rx="8" class="ok-panel"/>
+    <text x="115" y="28" text-anchor="middle" class="big ok-text">✓ 良いはんだ付け</text>
+    <text x="115" y="48" text-anchor="middle" class="small">富士山型、光沢あり、境がなだらか</text>
+
+    <!-- PCB -->
+    <rect x="30" y="180" width="170" height="20" class="pcb"/>
+    <!-- Pad -->
+    <rect x="80" y="170" width="70" height="12" class="pad"/>
+    <!-- Lead (component leg going up through hole) -->
+    <rect x="110" y="80" width="10" height="100" class="lead"/>
+    <!-- Good solder fillet (cone shape) -->
+    <path d="M 80 170 L 80 172 L 92 172 Q 100 172 108 155 L 115 130 L 122 155 Q 130 172 138 172 L 150 172 L 150 170 Z" class="solder-good"/>
+
+    <!-- Labels -->
+    <line x1="115" y1="90" x2="160" y2="70" class="arrow"/>
+    <text x="165" y="75" class="small">リード（部品の足）</text>
+
+    <line x1="115" y1="140" x2="180" y2="115" class="arrow"/>
+    <text x="185" y="110" class="small">はんだが</text>
+    <text x="185" y="125" class="small">足とランド</text>
+    <text x="185" y="140" class="small">両方を濡らしている</text>
+
+    <line x1="115" y1="176" x2="40" y2="150" class="arrow"/>
+    <text x="10" y="145" class="small">ランド（パッド）</text>
+
+    <line x1="115" y1="195" x2="40" y2="215" class="arrow"/>
+    <text x="20" y="230" class="small">基板（PCB）</text>
+
+    <!-- Check marks / summary -->
+    <text x="20" y="260" class="lbl ok-text">✓ 境目がなだらか</text>
+    <text x="20" y="276" class="lbl ok-text">✓ 表面に光沢</text>
+  </g>
+
+  <!-- ========== Panel 2: COLD JOINT ========== -->
+  <g transform="translate(275,60)">
+    <rect x="0" y="0" width="230" height="280" rx="8" class="ng-panel"/>
+    <text x="115" y="28" text-anchor="middle" class="big ng-text">✗ イモはんだ（冷はんだ）</text>
+    <text x="115" y="48" text-anchor="middle" class="small">玉状、曇り、境が凸で段差</text>
+
+    <!-- PCB -->
+    <rect x="30" y="180" width="170" height="20" class="pcb"/>
+    <!-- Pad -->
+    <rect x="80" y="170" width="70" height="12" class="pad"/>
+    <!-- Lead -->
+    <rect x="110" y="80" width="10" height="100" class="lead"/>
+    <!-- Cold joint: globular, doesn't wet pad -->
+    <ellipse cx="115" cy="155" rx="20" ry="18" class="solder-cold"/>
+    <!-- Show gap between solder and pad with red line -->
+    <line x1="95" y1="170" x2="135" y2="170" stroke="#c62828" stroke-width="2" stroke-dasharray="3 2"/>
+
+    <!-- Labels -->
+    <line x1="115" y1="140" x2="180" y2="115" class="arrow"/>
+    <text x="185" y="110" class="small">はんだが</text>
+    <text x="185" y="125" class="small">足にしか</text>
+    <text x="185" y="140" class="small">付いていない</text>
+
+    <line x1="100" y1="172" x2="40" y2="150" class="arrow"/>
+    <text x="10" y="145" class="small ng-text">ランドとの</text>
+    <text x="10" y="158" class="small ng-text">境に隙間</text>
+
+    <text x="20" y="240" class="lbl ng-text">✗ 表面が曇っている</text>
+    <text x="20" y="256" class="lbl ng-text">✗ 段差が急（富士山型にならない）</text>
+    <text x="20" y="272" class="lbl ng-text">✗ 電気的に不安定（接触不良）</text>
+  </g>
+
+  <!-- ========== Panel 3: BRIDGE ========== -->
+  <g transform="translate(520,60)">
+    <rect x="0" y="0" width="230" height="280" rx="8" class="ng-panel"/>
+    <text x="115" y="28" text-anchor="middle" class="big ng-text">✗ はんだブリッジ</text>
+    <text x="115" y="48" text-anchor="middle" class="small">隣のランドまで繋がっている</text>
+
+    <!-- PCB -->
+    <rect x="10" y="180" width="210" height="20" class="pcb"/>
+    <!-- Two pads -->
+    <rect x="40" y="170" width="40" height="12" class="pad"/>
+    <rect x="140" y="170" width="40" height="12" class="pad"/>
+    <!-- Two leads -->
+    <rect x="55" y="80" width="10" height="100" class="lead"/>
+    <rect x="155" y="80" width="10" height="100" class="lead"/>
+    <!-- Bridge: solder spans between the two pads -->
+    <path d="M 40 170 L 40 172 L 55 172 Q 62 172 70 160 L 80 155 L 100 150 L 120 155 L 140 160 Q 148 172 155 172 L 180 172 L 180 170 Z" class="solder-bridge"/>
+
+    <!-- Red X on bridge -->
+    <circle cx="110" cy="155" r="14" fill="#ffffff" stroke="#c62828" stroke-width="2.5"/>
+    <line x1="101" y1="146" x2="119" y2="164" stroke="#c62828" stroke-width="3"/>
+    <line x1="119" y1="146" x2="101" y2="164" stroke="#c62828" stroke-width="3"/>
+
+    <!-- Labels -->
+    <line x1="60" y1="90" x2="20" y2="70" class="arrow"/>
+    <text x="5" y="65" class="small">隣接した 2 足</text>
+
+    <text x="20" y="240" class="lbl ng-text">✗ 隣接ピンがショート</text>
+    <text x="20" y="256" class="lbl ng-text">✗ 通電すると即座に部品破壊</text>
+    <text x="20" y="272" class="lbl ng-text">✗ 見落としやすい（要 ルーペ）</text>
+  </g>
+
+  <!-- Bottom: observation tip -->
+  <rect x="30" y="355" width="720" height="55" rx="6" fill="#f5f5f5" stroke="#888" stroke-width="1"/>
+  <text x="50" y="378" class="big">チェック方法</text>
+  <text x="50" y="397" class="lbl">はんだ付けのたびに <tspan font-weight="bold">ルーペ（10 倍）で目視 ＋ テスタの導通モード で隣接ピン間の短絡確認</tspan> を実施する。特に DIP IC のピン間は目視だけでは見落としやすい。</text>
+</svg>

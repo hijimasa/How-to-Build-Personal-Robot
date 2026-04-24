@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 360" role="img" aria-label="プルアップ抵抗とプルダウン抵抗の比較">
+  <title>スイッチ入力：プルアップ（GPIO を VCC に吊り上げる）とプルダウン（GPIO を GND に引き下ろす）</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .wire  { stroke: #525252; stroke-width: 2; fill: none; }
+      .body  { stroke: #525252; stroke-width: 2; fill: #ffffff; }
+      .ok-panel { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .val   { font-family: monospace; font-size: 12px; fill: #222; }
+      .okval { font-family: monospace; font-size: 12px; font-weight: bold; fill: #2e7d32; }
+      .red-lbl { fill: #c62828; font-family: monospace; font-size: 12px; font-weight: bold; }
+    </style>
+  </defs>
+
+  <text x="390" y="26" text-anchor="middle" class="big">プルアップ vs プルダウン：浮き入力を避ける 2 通り</text>
+
+  <!-- Panel 1: Pull-up (GPIO is HIGH when button not pressed) -->
+  <g transform="translate(30,55)">
+    <rect x="0" y="0" width="360" height="280" rx="8" class="ok-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big">プルアップ</text>
+    <text x="180" y="42" text-anchor="middle" class="small">未押下 = HIGH、押下 = LOW</text>
+
+    <!-- VCC rail -->
+    <line x1="80" y1="70" x2="280" y2="70" class="wire" stroke-width="3"/>
+    <text x="60" y="75" class="red-lbl">5V</text>
+
+    <!-- Pull-up resistor from VCC to GPIO -->
+    <line x1="180" y1="70" x2="180" y2="100" class="wire"/>
+    <rect x="165" y="100" width="30" height="40" class="body" rx="2"/>
+    <text x="210" y="125" class="small">10 kΩ</text>
+    <line x1="180" y1="140" x2="180" y2="180" class="wire"/>
+
+    <!-- GPIO node (junction) -->
+    <circle cx="180" cy="180" r="3" fill="#525252"/>
+    <text x="195" y="175" class="small">→ GPIO</text>
+
+    <!-- Wire to GPIO pin -->
+    <line x1="180" y1="180" x2="270" y2="180" class="wire"/>
+    <rect x="270" y="173" width="40" height="14" class="body"/>
+    <text x="290" y="166" text-anchor="middle" class="small">D2</text>
+
+    <!-- Switch below GPIO node -->
+    <line x1="180" y1="180" x2="180" y2="200" class="wire"/>
+    <!-- Switch symbol (two circles with opening line) -->
+    <circle cx="180" cy="205" r="3" fill="#525252"/>
+    <circle cx="180" cy="230" r="3" fill="#525252"/>
+    <line x1="180" y1="205" x2="170" y2="222" class="wire"/>
+    <text x="200" y="220" class="small">SW</text>
+    <!-- Wire to GND -->
+    <line x1="180" y1="230" x2="180" y2="250" class="wire"/>
+    <line x1="80" y1="250" x2="280" y2="250" class="wire" stroke-width="3"/>
+    <text x="60" y="255" class="small">GND</text>
+
+    <text x="180" y="268" text-anchor="middle" class="small">内蔵プルアップ（INPUT_PULLUP）なら抵抗不要</text>
+  </g>
+
+  <!-- Panel 2: Pull-down (GPIO is LOW when button not pressed) -->
+  <g transform="translate(410,55)">
+    <rect x="0" y="0" width="360" height="280" rx="8" class="ok-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big">プルダウン</text>
+    <text x="180" y="42" text-anchor="middle" class="small">未押下 = LOW、押下 = HIGH</text>
+
+    <!-- VCC rail -->
+    <line x1="80" y1="70" x2="280" y2="70" class="wire" stroke-width="3"/>
+    <text x="60" y="75" class="red-lbl">5V</text>
+
+    <!-- Switch between VCC and GPIO -->
+    <line x1="180" y1="70" x2="180" y2="90" class="wire"/>
+    <circle cx="180" cy="95" r="3" fill="#525252"/>
+    <circle cx="180" cy="120" r="3" fill="#525252"/>
+    <line x1="180" y1="95" x2="170" y2="112" class="wire"/>
+    <text x="200" y="110" class="small">SW</text>
+    <line x1="180" y1="120" x2="180" y2="150" class="wire"/>
+
+    <!-- GPIO node -->
+    <circle cx="180" cy="150" r="3" fill="#525252"/>
+    <line x1="180" y1="150" x2="270" y2="150" class="wire"/>
+    <rect x="270" y="143" width="40" height="14" class="body"/>
+    <text x="290" y="136" text-anchor="middle" class="small">D2</text>
+
+    <!-- Pull-down resistor from GPIO to GND -->
+    <line x1="180" y1="150" x2="180" y2="180" class="wire"/>
+    <rect x="165" y="180" width="30" height="40" class="body" rx="2"/>
+    <text x="210" y="205" class="small">10 kΩ</text>
+    <line x1="180" y1="220" x2="180" y2="250" class="wire"/>
+
+    <!-- GND rail -->
+    <line x1="80" y1="250" x2="280" y2="250" class="wire" stroke-width="3"/>
+    <text x="60" y="255" class="small">GND</text>
+
+    <text x="180" y="268" text-anchor="middle" class="small">プルダウンは外付け必須（内蔵はない機種が多い）</text>
+  </g>
+</svg>

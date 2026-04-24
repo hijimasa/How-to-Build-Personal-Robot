@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" role="img" aria-label="データシートの typ / min / max と個体バラツキの関係">
+  <title>データシートの min / typ / max：個体バラツキの分布と、その上下限が保証される範囲</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 15px; font-weight: bold; fill: #222; }
+      .mono  { font-family: "Consolas", "SF Mono", monospace; font-size: 13px; font-weight: bold; fill: #222; }
+      .axis  { stroke: #525252; stroke-width: 2; fill: none; }
+      .tick  { stroke: #525252; stroke-width: 1.5; fill: none; }
+      .curve { fill: #e3f2fd; stroke: #1565c0; stroke-width: 2; }
+      .min-l { stroke: #c62828; stroke-width: 2; stroke-dasharray: 6 4; fill: none; }
+      .max-l { stroke: #c62828; stroke-width: 2; stroke-dasharray: 6 4; fill: none; }
+      .typ-l { stroke: #2e7d32; stroke-width: 2.5; fill: none; }
+      .red   { fill: #c62828; font-weight: bold; }
+      .green { fill: #2e7d32; font-weight: bold; }
+      .blue  { fill: #1565c0; font-weight: bold; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle" class="big">min / typ / max：個体バラツキの上下限と代表値</text>
+
+  <!-- Baseline -->
+  <line x1="80" y1="230" x2="640" y2="230" class="axis"/>
+  <polygon points="640,230 630,225 630,235" fill="#525252"/>
+  <text x="654" y="234" class="lbl">測定値 →</text>
+
+  <!-- Bell curve (polyline approximation of Gaussian) -->
+  <path d="M 120 230
+           C 200 230 230 120 350 120
+           C 470 120 500 230 580 230 Z" class="curve"/>
+
+  <!-- min line -->
+  <line x1="180" y1="230" x2="180" y2="90" class="min-l"/>
+  <text x="180" y="80"  text-anchor="middle" class="mono red">min.</text>
+  <text x="180" y="252" text-anchor="middle" class="lbl red">下限保証</text>
+
+  <!-- typ line -->
+  <line x1="350" y1="230" x2="350" y2="90" class="typ-l"/>
+  <text x="350" y="80"  text-anchor="middle" class="mono green">typ.</text>
+  <text x="350" y="252" text-anchor="middle" class="lbl green">ほとんどの個体がここ</text>
+
+  <!-- max line -->
+  <line x1="520" y1="230" x2="520" y2="90" class="max-l"/>
+  <text x="520" y="80"  text-anchor="middle" class="mono red">max.</text>
+  <text x="520" y="252" text-anchor="middle" class="lbl red">上限保証</text>
+
+  <!-- Out-of-range annotation (left) -->
+  <rect x="80" y="260" width="100" height="40" fill="#ffebee" stroke="#c62828" stroke-width="1" rx="4"/>
+  <text x="130" y="276" text-anchor="middle" class="lbl">min を下回る個体は</text>
+  <text x="130" y="292" text-anchor="middle" class="lbl">出荷されない</text>
+
+  <!-- Out-of-range annotation (right) -->
+  <rect x="520" y="260" width="110" height="40" fill="#ffebee" stroke="#c62828" stroke-width="1" rx="4"/>
+  <text x="575" y="276" text-anchor="middle" class="lbl">max を上回る個体も</text>
+  <text x="575" y="292" text-anchor="middle" class="lbl">出荷されない</text>
+
+  <!-- Bottom caption -->
+  <text x="350" y="326" text-anchor="middle" class="lbl">部品選定：最悪ケース（min または max）で回路が成立するかを検証する。</text>
+  <text x="350" y="346" text-anchor="middle" class="lbl">絶対最大定格（Absolute Max）はこれとは別の数値で、電気的に破壊されるラインを指す。</text>
+</svg>

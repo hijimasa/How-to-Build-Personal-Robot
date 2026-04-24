@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 340" role="img" aria-label="筐体の支持方法と撓み">
+  <title>同じ板に同じ荷重をかけても、片持ち支持と両端支持では撓みが大きく違う</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .plate { fill: #b0bec5; stroke: #37474f; stroke-width: 2; }
+      .plate-bent { fill: #b0bec5; stroke: #37474f; stroke-width: 2; }
+      .support { fill: #ef6c00; stroke: #e65100; stroke-width: 2; }
+      .motor { fill: #546e7a; stroke: #37474f; stroke-width: 2; }
+      .force { stroke: #c62828; stroke-width: 2.5; fill: #c62828; }
+      .force-nf { stroke: #c62828; stroke-width: 2.5; fill: none; }
+      .dim { stroke: #1565c0; stroke-width: 1.2; fill: none; }
+      .dim-text { fill: #1565c0; font-weight: bold; font-family: system-ui, sans-serif; font-size: 12px; }
+      .ng-panel { fill: #ffebee; stroke: #c62828; stroke-width: 2; }
+      .ok-panel { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .ng-text { fill: #c62828; font-weight: bold; }
+      .ok-text { fill: #2e7d32; font-weight: bold; }
+    </style>
+  </defs>
+
+  <text x="390" y="26" text-anchor="middle" class="big">同じ荷重・同じ板でも、支持の仕方で撓み方が大きく違う</text>
+
+  <!-- Panel 1: Cantilever (NG) -->
+  <g transform="translate(30,55)">
+    <rect x="0" y="0" width="360" height="260" rx="8" class="ng-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big ng-text">✗ 片持ち支持：撓みが大きい</text>
+
+    <!-- Support (fixed end on left) -->
+    <rect x="20" y="100" width="20" height="80" class="support"/>
+
+    <!-- Bent plate -->
+    <path d="M 40 130 Q 120 130 200 160 L 340 200 L 340 210 L 200 170 Q 120 140 40 140 Z" class="plate-bent"/>
+
+    <!-- Motor on right end (tilted down) -->
+    <rect x="310" y="175" width="40" height="30" class="motor" transform="rotate(12 330 190)"/>
+    <circle cx="345" cy="192" r="5" fill="#37474f" transform="rotate(12 330 190)"/>
+
+    <!-- Force arrow at tip -->
+    <line x1="340" y1="120" x2="340" y2="175" class="force-nf"/>
+    <polygon points="340,175 335,165 345,165" class="force"/>
+    <text x="345" y="115" class="small ng-text">荷重 ↓</text>
+
+    <!-- Deflection indicator -->
+    <line x1="360" y1="140" x2="370" y2="140" class="dim"/>
+    <line x1="360" y1="205" x2="370" y2="205" class="dim"/>
+    <line x1="365" y1="140" x2="365" y2="205" class="dim"/>
+    <polygon points="365,142 362,150 368,150" fill="#1565c0"/>
+    <polygon points="365,203 362,195 368,195" fill="#1565c0"/>
+    <text x="375" y="177" class="dim-text">撓み 大</text>
+
+    <!-- Caption -->
+    <text x="180" y="235" text-anchor="middle" class="small">撓み量 ∝ 長さ³ / 厚さ³ / 剛性</text>
+    <text x="180" y="250" text-anchor="middle" class="small ng-text">片持ち は撓みが大きくなりがち</text>
+  </g>
+
+  <!-- Panel 2: Simply supported (OK) -->
+  <g transform="translate(410,55)">
+    <rect x="0" y="0" width="360" height="260" rx="8" class="ok-panel"/>
+    <text x="180" y="26" text-anchor="middle" class="big ok-text">✓ 両端支持：撓みが小さい</text>
+
+    <!-- Supports on both ends -->
+    <rect x="20" y="150" width="20" height="50" class="support"/>
+    <rect x="320" y="150" width="20" height="50" class="support"/>
+
+    <!-- Slightly bent plate (much less deflection than cantilever) -->
+    <path d="M 40 140 Q 180 155 320 140 L 320 150 Q 180 163 40 150 Z" class="plate-bent"/>
+
+    <!-- Motor in center -->
+    <rect x="160" y="160" width="40" height="25" class="motor"/>
+    <circle cx="200" cy="172" r="4" fill="#37474f"/>
+
+    <!-- Force in center -->
+    <line x1="180" y1="110" x2="180" y2="158" class="force-nf"/>
+    <polygon points="180,158 175,148 185,148" class="force"/>
+    <text x="185" y="105" class="small ok-text">荷重 ↓</text>
+
+    <!-- Deflection indicator (small) -->
+    <line x1="345" y1="145" x2="355" y2="145" class="dim"/>
+    <line x1="345" y1="160" x2="355" y2="160" class="dim"/>
+    <line x1="350" y1="145" x2="350" y2="160" class="dim"/>
+    <text x="358" y="157" class="dim-text">小</text>
+
+    <!-- Caption -->
+    <text x="180" y="225" text-anchor="middle" class="small">同じ板で同じ荷重でも、撓みは 片持ちの 1/20 前後</text>
+    <text x="180" y="245" text-anchor="middle" class="small ok-text">両端支持 or 三点支持にするのが鉄則</text>
+  </g>
+</svg>

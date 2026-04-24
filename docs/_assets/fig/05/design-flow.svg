@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" role="img" aria-label="電気の設計フェーズの流れ">
+  <title>設計フェーズの 5 ステップ：要件定義 → AI 相談 → レビュー → BOM → 発注</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 15px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 12px; fill: #444; }
+      .step  { fill: #ffffff; stroke: #525252; stroke-width: 2; }
+      .step-human { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .step-ai    { fill: #e3f2fd; stroke: #1565c0; stroke-width: 2; }
+      .step-out   { fill: #fff3e0; stroke: #ef6c00; stroke-width: 2; }
+      .arrow { stroke: #525252; stroke-width: 2; fill: none; }
+      .arrow-loop { stroke: #c62828; stroke-width: 2; fill: none; stroke-dasharray: 5 3; }
+      .marker { fill: #525252; }
+      .marker-red { fill: #c62828; }
+      .anno-box { fill: #f5f5f5; stroke: #888; stroke-width: 1; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="380" y="28" text-anchor="middle" class="big">設計フェーズの 5 ステップ（Ch 5 の全体図）</text>
+
+  <!-- Step 1: 要件定義 (human) -->
+  <rect x="30" y="70" width="140" height="60" rx="8" class="step-human"/>
+  <text x="100" y="94" text-anchor="middle" class="big">1. 要件定義</text>
+  <text x="100" y="114" text-anchor="middle" class="small">やりたいこと → 電気要件</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="170" y1="100" x2="200" y2="100" class="arrow"/>
+  <polygon points="205,100 195,95 195,105" class="marker"/>
+
+  <!-- Step 2: AI 相談 -->
+  <rect x="205" y="70" width="150" height="60" rx="8" class="step-ai"/>
+  <text x="280" y="94" text-anchor="middle" class="big">2. AI 相談</text>
+  <text x="280" y="114" text-anchor="middle" class="small">候補の洗い出し</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="355" y1="100" x2="385" y2="100" class="arrow"/>
+  <polygon points="390,100 380,95 380,105" class="marker"/>
+
+  <!-- Step 3: 人によるレビュー (human) -->
+  <rect x="390" y="70" width="160" height="60" rx="8" class="step-human"/>
+  <text x="470" y="94" text-anchor="middle" class="big">3. レビュー（人）</text>
+  <text x="470" y="114" text-anchor="middle" class="small">データシートで検証</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="550" y1="100" x2="580" y2="100" class="arrow"/>
+  <polygon points="585,100 575,95 575,105" class="marker"/>
+
+  <!-- Step 4: BOM 作成 (output) -->
+  <rect x="585" y="70" width="140" height="60" rx="8" class="step-out"/>
+  <text x="655" y="94" text-anchor="middle" class="big">4. BOM 作成</text>
+  <text x="655" y="114" text-anchor="middle" class="small">部品表の確定</text>
+
+  <!-- Arrow 4 down to 5 -->
+  <line x1="655" y1="130" x2="655" y2="190" class="arrow"/>
+  <polygon points="655,195 650,185 660,185" class="marker"/>
+
+  <!-- Step 5: 発注 (output) -->
+  <rect x="585" y="195" width="140" height="50" rx="8" class="step-out"/>
+  <text x="655" y="220" text-anchor="middle" class="big">5. 発注</text>
+  <text x="655" y="237" text-anchor="middle" class="small">→ 第 6 章（組立）へ</text>
+
+  <!-- NG loop: Review reveals issue → go back to AI -->
+  <path d="M 470 130 C 470 170 340 170 340 135" class="arrow-loop"/>
+  <polygon points="337,133 346,140 341,148" class="marker-red"/>
+  <text x="400" y="165" text-anchor="middle" class="small" fill="#c62828">NG があれば戻る（要件不足 or 候補見直し）</text>
+
+  <!-- Legend box -->
+  <rect x="30" y="275" width="700" height="150" rx="6" class="anno-box"/>
+  <text x="50" y="297" class="big">凡例</text>
+
+  <!-- Legend: human (green) -->
+  <rect x="50" y="308" width="24" height="16" rx="3" class="step-human"/>
+  <text x="82" y="321" class="lbl">人間の作業</text>
+
+  <!-- Legend: AI (blue) -->
+  <rect x="180" y="308" width="24" height="16" rx="3" class="step-ai"/>
+  <text x="212" y="321" class="lbl">AI エージェントの作業</text>
+
+  <!-- Legend: output (orange) -->
+  <rect x="370" y="308" width="24" height="16" rx="3" class="step-out"/>
+  <text x="402" y="321" class="lbl">成果物（他フェーズに渡すもの）</text>
+
+  <!-- Key takeaway -->
+  <text x="50" y="358" class="big" fill="#2e7d32">ポイント:</text>
+  <text x="50" y="378" class="lbl">・ AI が出したものを <tspan font-weight="bold">そのまま BOM に入れない</tspan>。必ず Step 3 のレビューを挟む</text>
+  <text x="50" y="395" class="lbl">・ レビューは第 2〜4 章の知識（データシート・Absolute Max・電源）で行う</text>
+  <text x="50" y="412" class="lbl">・ BOM が確定してから発注する。Step 4 以前に部品を買うと高確率でやり直しになる</text>
+</svg>

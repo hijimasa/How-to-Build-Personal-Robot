@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 320" role="img" aria-label="P 制御のフロー図">
+  <title>P 制御：左右センサの差からモータ出力の補正を決めるフィードバックループ</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 12px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .mono  { font-family: monospace; font-size: 12px; fill: #222; }
+      .block { fill: #e3f2fd; stroke: #1565c0; stroke-width: 2; }
+      .block-op { fill: #fff8e1; stroke: #f9a825; stroke-width: 2; }
+      .block-out { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .arrow { stroke: #525252; stroke-width: 2; fill: none; }
+      .arrow-fb { stroke: #c62828; stroke-width: 2; fill: none; stroke-dasharray: 6 3; }
+      .marker { fill: #525252; }
+      .marker-red { fill: #c62828; }
+    </style>
+  </defs>
+
+  <text x="390" y="26" text-anchor="middle" class="big">P 制御：ライン上の位置誤差からモータ速度補正を決めるフィードバック</text>
+
+  <!-- Sensor read block -->
+  <rect x="30" y="100" width="140" height="70" rx="6" class="block"/>
+  <text x="100" y="125" text-anchor="middle" class="big">① センサ読み取り</text>
+  <text x="100" y="143" text-anchor="middle" class="small">左・右の反射量</text>
+  <text x="100" y="160" text-anchor="middle" class="mono">analogRead(A0/A1)</text>
+
+  <line x1="170" y1="135" x2="200" y2="135" class="arrow"/>
+  <polygon points="205,135 195,130 195,140" class="marker"/>
+
+  <!-- Error calculation -->
+  <rect x="205" y="100" width="140" height="70" rx="6" class="block-op"/>
+  <text x="275" y="125" text-anchor="middle" class="big">② 誤差を計算</text>
+  <text x="275" y="143" text-anchor="middle" class="small">error = 右 − 左</text>
+  <text x="275" y="160" text-anchor="middle" class="small">ラインが左にズレ → +</text>
+
+  <line x1="345" y1="135" x2="375" y2="135" class="arrow"/>
+  <polygon points="380,135 370,130 370,140" class="marker"/>
+
+  <!-- Multiply by Kp -->
+  <rect x="380" y="100" width="140" height="70" rx="6" class="block-op"/>
+  <text x="450" y="125" text-anchor="middle" class="big">③ Kp を掛ける</text>
+  <text x="450" y="143" text-anchor="middle" class="small">adjust = Kp × error</text>
+  <text x="450" y="160" text-anchor="middle" class="small">Kp：比例ゲイン</text>
+
+  <line x1="520" y1="135" x2="550" y2="135" class="arrow"/>
+  <polygon points="555,135 545,130 545,140" class="marker"/>
+
+  <!-- Motor output -->
+  <rect x="555" y="100" width="200" height="70" rx="6" class="block-out"/>
+  <text x="655" y="125" text-anchor="middle" class="big">④ モータ速度に反映</text>
+  <text x="655" y="143" text-anchor="middle" class="small">L速度 = 基準 − adjust</text>
+  <text x="655" y="160" text-anchor="middle" class="small">R速度 = 基準 + adjust</text>
+
+  <!-- Feedback arrow (through robot → ground → sensors) -->
+  <path d="M 655 180 L 655 230 L 100 230 L 100 180" class="arrow-fb"/>
+  <polygon points="97,180 93,188 107,188" class="marker-red"/>
+
+  <rect x="250" y="210" width="270" height="40" rx="4" fill="#ffebee" stroke="#c62828" stroke-width="1"/>
+  <text x="385" y="225" text-anchor="middle" class="small" fill="#c62828">物理的フィードバック</text>
+  <text x="385" y="240" text-anchor="middle" class="small" fill="#c62828">（モータが回る → 車体が動く → センサ位置が変わる）</text>
+
+  <!-- Pseudocode -->
+  <rect x="30" y="265" width="720" height="45" rx="4" fill="#f5f5f5" stroke="#888"/>
+  <text x="40" y="283" class="mono" fill="#222">int error = analogRead(RIGHT_SENSOR) - analogRead(LEFT_SENSOR);</text>
+  <text x="40" y="300" class="mono" fill="#222">int adjust = Kp * error / 100;  int leftSpeed = BASE_SPEED - adjust;  int rightSpeed = BASE_SPEED + adjust;</text>
+</svg>

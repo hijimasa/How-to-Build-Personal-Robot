@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 360" role="img" aria-label="荷重モード 4 分類：引張／圧縮／曲げ／ねじり">
+  <title>材料にかかる力の 4 つの基本モード</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .bar   { fill: #90a4ae; stroke: #37474f; stroke-width: 2; }
+      .bar-bent { fill: #90a4ae; stroke: #37474f; stroke-width: 2; opacity: 0.9; }
+      .force { stroke: #c62828; stroke-width: 2.5; fill: #c62828; }
+      .force-nf { stroke: #c62828; stroke-width: 2.5; fill: none; }
+      .wall { fill: #ef6c00; }
+      .panel { fill: #fafafa; stroke: #888; stroke-width: 1.5; }
+    </style>
+  </defs>
+
+  <text x="390" y="26" text-anchor="middle" class="big">材料にかかる 4 つの荷重モード（定性的直感）</text>
+
+  <!-- Panel 1: Tension (引張) -->
+  <g transform="translate(30,55)">
+    <rect x="0" y="0" width="170" height="280" rx="6" class="panel"/>
+    <text x="85" y="24" text-anchor="middle" class="big">① 引張</text>
+    <text x="85" y="42" text-anchor="middle" class="small">Tension</text>
+
+    <!-- Bar -->
+    <rect x="60" y="90" width="50" height="100" class="bar"/>
+
+    <!-- Arrows pulling outward -->
+    <line x1="85" y1="60" x2="85" y2="80" class="force-nf"/>
+    <polygon points="85,80 80,70 90,70" class="force"/>
+    <line x1="85" y1="220" x2="85" y2="200" class="force-nf"/>
+    <polygon points="85,200 80,210 90,210" class="force"/>
+
+    <text x="85" y="50" text-anchor="middle" class="small">引っ張る</text>
+    <text x="85" y="240" text-anchor="middle" class="small">引っ張る</text>
+
+    <text x="85" y="260" text-anchor="middle" class="lbl">例：ワイヤが切れる</text>
+    <text x="85" y="275" text-anchor="middle" class="small">ねじの頭が飛ぶ</text>
+  </g>
+
+  <!-- Panel 2: Compression (圧縮) -->
+  <g transform="translate(220,55)">
+    <rect x="0" y="0" width="170" height="280" rx="6" class="panel"/>
+    <text x="85" y="24" text-anchor="middle" class="big">② 圧縮</text>
+    <text x="85" y="42" text-anchor="middle" class="small">Compression</text>
+
+    <!-- Bar -->
+    <rect x="60" y="90" width="50" height="100" class="bar"/>
+
+    <!-- Arrows pushing inward -->
+    <line x1="85" y1="60" x2="85" y2="88" class="force-nf"/>
+    <polygon points="85,88 80,78 90,78" class="force"/>
+    <line x1="85" y1="220" x2="85" y2="192" class="force-nf"/>
+    <polygon points="85,192 80,202 90,202" class="force"/>
+
+    <text x="85" y="50" text-anchor="middle" class="small">押す</text>
+    <text x="85" y="240" text-anchor="middle" class="small">押す</text>
+
+    <text x="85" y="260" text-anchor="middle" class="lbl">例：スペーサが潰れる</text>
+    <text x="85" y="275" text-anchor="middle" class="small">細い柱が座屈</text>
+  </g>
+
+  <!-- Panel 3: Bending (曲げ) -->
+  <g transform="translate(410,55)">
+    <rect x="0" y="0" width="170" height="280" rx="6" class="panel"/>
+    <text x="85" y="24" text-anchor="middle" class="big">③ 曲げ</text>
+    <text x="85" y="42" text-anchor="middle" class="small">Bending</text>
+
+    <!-- Wall (fixed end) -->
+    <rect x="20" y="100" width="10" height="80" class="wall"/>
+    <!-- Bar bending down (cantilever beam, bent) -->
+    <path d="M 30 140 Q 90 140 140 170 L 140 185 Q 90 155 30 155 Z" class="bar-bent"/>
+
+    <!-- Force arrow pushing down at tip -->
+    <line x1="140" y1="110" x2="140" y2="165" class="force-nf"/>
+    <polygon points="140,165 135,155 145,155" class="force"/>
+    <text x="140" y="100" text-anchor="middle" class="small">下向き荷重</text>
+
+    <text x="85" y="220" text-anchor="middle" class="small">片側固定、先端に力</text>
+
+    <text x="85" y="250" text-anchor="middle" class="lbl">例：アクリル板のたわみ</text>
+    <text x="85" y="265" text-anchor="middle" class="small">モータアームが下がる</text>
+    <text x="85" y="280" text-anchor="middle" class="small">薄板が割れる</text>
+  </g>
+
+  <!-- Panel 4: Torsion (ねじり) -->
+  <g transform="translate(600,55)">
+    <rect x="0" y="0" width="170" height="280" rx="6" class="panel"/>
+    <text x="85" y="24" text-anchor="middle" class="big">④ ねじり</text>
+    <text x="85" y="42" text-anchor="middle" class="small">Torsion</text>
+
+    <!-- Shaft (horizontal cylinder) -->
+    <rect x="15" y="135" width="150" height="30" class="bar"/>
+    <!-- Left end: fixed -->
+    <rect x="5" y="125" width="10" height="50" class="wall"/>
+
+    <!-- Rotation arrows showing twist -->
+    <path d="M 140 120 Q 160 135 140 160" class="force-nf"/>
+    <polygon points="140,160 135,150 145,150" class="force"/>
+    <path d="M 165 180 Q 145 165 165 140" class="force-nf"/>
+    <polygon points="165,140 160,150 170,150" class="force"/>
+
+    <text x="85" y="100" text-anchor="middle" class="small">片端固定、もう一端を</text>
+    <text x="85" y="115" text-anchor="middle" class="small">ねじる</text>
+    <text x="85" y="200" text-anchor="middle" class="small">（軸まわりの回転力）</text>
+
+    <text x="85" y="240" text-anchor="middle" class="lbl">例：モータ軸のねじれ</text>
+    <text x="85" y="255" text-anchor="middle" class="small">シャフトカップリングの破損</text>
+    <text x="85" y="270" text-anchor="middle" class="small">固定ねじ（イモねじ）がなめる</text>
+  </g>
+</svg>

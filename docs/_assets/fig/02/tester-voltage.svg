@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 310" role="img" aria-label="テスタで電圧を測る：回路に並列に接続">
+  <title>電圧測定：テスタのプローブを測りたい部品の両端に並列に当てる</title>
+  <defs>
+    <style>
+      .wire  { stroke: #525252; stroke-width: 2; fill: none; stroke-linecap: round; }
+      .body  { stroke: #525252; stroke-width: 2; fill: #ffffff; }
+      .thick { stroke: #525252; stroke-width: 3; fill: none; }
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 15px; font-weight: bold; fill: #222; }
+      .val   { font-family: system-ui, sans-serif; font-size: 13px; font-weight: bold; fill: #c62828; }
+      .meter-box { fill: #fff8e1; stroke: #f9a825; stroke-width: 2.5; }
+      .redp  { stroke: #c62828; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+      .blackp{ stroke: #212121; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+      .disp  { fill: #1a237e; font-family: monospace; font-size: 22px; font-weight: bold; }
+      .ok    { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-weight: bold; fill: #2e7d32; }
+    </style>
+  </defs>
+
+  <!-- OK banner -->
+  <rect x="20" y="16" width="580" height="36" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="310" y="40" text-anchor="middle" class="ok">OK — 測りたい部品と 並列 に当てる（回路は切らない）</text>
+
+  <!-- Left vertical wire & battery -->
+  <line x1="60" y1="90" x2="60" y2="230" class="wire"/>
+  <line x1="45" y1="155" x2="75" y2="155" class="thick"/>
+  <line x1="55" y1="170" x2="65" y2="170" class="thick"/>
+  <text x="30" y="160" class="lbl">+</text>
+  <text x="30" y="180" class="lbl">−</text>
+  <text x="22" y="140" class="big">5 V</text>
+
+  <!-- Top wire -->
+  <line x1="60"  y1="90"  x2="200" y2="90" class="wire"/>
+  <line x1="340" y1="90"  x2="500" y2="90" class="wire"/>
+
+  <!-- Resistor -->
+  <rect x="200" y="78" width="140" height="24" class="body" rx="2"/>
+  <text x="270" y="70" text-anchor="middle" class="big">R</text>
+  <text x="270" y="120" text-anchor="middle" class="val">1 kΩ</text>
+
+  <!-- Right wire down to LED -->
+  <line x1="500" y1="90" x2="500" y2="140" class="wire"/>
+  <!-- LED -->
+  <polygon points="485,140 515,140 500,170" class="body"/>
+  <line x1="485" y1="170" x2="515" y2="170" class="thick"/>
+  <line x1="500" y1="170" x2="500" y2="230" class="wire"/>
+  <text x="540" y="160" class="lbl">LED</text>
+
+  <!-- Bottom wire -->
+  <line x1="60" y1="230" x2="500" y2="230" class="wire"/>
+
+  <!-- Multimeter drawn above the resistor, probes touch both sides of R -->
+  <rect x="215" y="170" width="110" height="70" class="meter-box" rx="6"/>
+  <text x="270" y="188" text-anchor="middle" class="lbl">DMM</text>
+  <rect x="225" y="194" width="90" height="32" fill="#ffffff" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="270" y="218" text-anchor="middle" class="disp">3.80 V</text>
+  <!-- V probe (red) on the left end of resistor -->
+  <path d="M 235 240 L 235 270 L 205 270 L 205 102 L 200 102" class="redp"/>
+  <!-- COM probe (black) on the right end of resistor -->
+  <path d="M 305 240 L 305 270 L 345 270 L 345 102 L 340 102" class="blackp"/>
+  <text x="215" y="265" class="val">V</text>
+  <text x="312" y="265" class="lbl">COM</text>
+
+  <!-- Caption -->
+  <text x="310" y="290" text-anchor="middle" class="lbl">黒 (COM) と赤 (V) を測りたい部品の両端に当てる。回路は通電したまま。</text>
+</svg>

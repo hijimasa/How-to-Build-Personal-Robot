@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 320" role="img" aria-label="絶対最大定格 vs 推奨動作条件の違い">
+  <title>絶対最大定格（Absolute Maximum Ratings）と推奨動作条件（Recommended Operating Conditions）の違い</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 15px; font-weight: bold; fill: #222; }
+      .th    { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-weight: bold; fill: #fff; }
+      .td    { font-family: system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .green { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .red   { fill: #ffebee; stroke: #c62828; stroke-width: 2; }
+      .gh    { fill: #2e7d32; }
+      .rh    { fill: #c62828; }
+      .axis  { stroke: #525252; stroke-width: 2; fill: none; }
+      .tick  { stroke: #525252; stroke-width: 1.5; fill: none; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="310" y="26" text-anchor="middle" class="big">「使ってよい範囲」と「壊さないための上限」は別モノ</text>
+
+  <!-- Number line / axis -->
+  <line x1="60" y1="200" x2="560" y2="200" class="axis"/>
+  <polygon points="560,200 548,194 548,206" fill="#525252"/>
+  <text x="560" y="220" text-anchor="end" class="lbl">ピンに流そうとする電流 I (mA) →</text>
+
+  <!-- Ticks: 0, 20, 40 -->
+  <line x1="80"  y1="200" x2="80"  y2="208" class="tick"/>
+  <line x1="270" y1="200" x2="270" y2="208" class="tick"/>
+  <line x1="460" y1="200" x2="460" y2="208" class="tick"/>
+  <text x="80"  y="222" text-anchor="middle" class="td">0</text>
+  <text x="270" y="222" text-anchor="middle" class="td">20 mA</text>
+  <text x="460" y="222" text-anchor="middle" class="td">40 mA</text>
+
+  <!-- Green zone: 0 ~ 20 mA -->
+  <rect x="80" y="160" width="190" height="40" class="green"/>
+  <text x="175" y="186" text-anchor="middle" class="big" fill="#2e7d32">推奨動作条件</text>
+  <text x="175" y="140" text-anchor="middle" class="lbl">Recommended Operating Conditions</text>
+  <text x="175" y="152" text-anchor="middle" class="td">（データシートの「電気的特性」で</text>
+  <text x="175" y="164" text-anchor="middle" class="td" opacity="0">spacer</text>
+  <text x="175" y="252" text-anchor="middle" class="lbl" fill="#2e7d32">ここで使う → 動作が保証される</text>
+
+  <!-- Red zone: 20 ~ 40 mA -->
+  <rect x="270" y="160" width="190" height="40" class="red"/>
+  <text x="365" y="186" text-anchor="middle" class="big" fill="#c62828">絶対最大定格</text>
+  <text x="365" y="140" text-anchor="middle" class="lbl">Absolute Maximum Ratings</text>
+  <text x="365" y="152" text-anchor="middle" class="td">（これを超えたら「永久破壊」）</text>
+  <text x="365" y="252" text-anchor="middle" class="lbl" fill="#c62828">ここは「壊れないだけ」で無保証</text>
+
+  <!-- Beyond zone -->
+  <rect x="460" y="160" width="80" height="40" fill="#ffffff" stroke="#525252" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="500" y="186" text-anchor="middle" class="big" fill="#c62828">破壊</text>
+  <text x="500" y="252" text-anchor="middle" class="lbl">焼損・寿命激減</text>
+
+  <!-- Footer note -->
+  <text x="310" y="296" text-anchor="middle" class="lbl">数値は ATmega328P（Arduino Uno R3）の 1 ピン DC 定格の例。</text>
+  <text x="310" y="312" text-anchor="middle" class="lbl">部品ごとに値は違うので、毎回データシートで確認する。</text>
+</svg>

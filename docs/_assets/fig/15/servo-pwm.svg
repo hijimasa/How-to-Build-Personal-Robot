@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 340" role="img" aria-label="サーボモータの PWM 信号仕様">
+  <title>サーボモータの制御信号：周期 20 ms、HIGH パルス幅 1〜2 ms が角度に対応</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .mono  { font-family: monospace; font-size: 12px; fill: #222; }
+      .axis  { stroke: #525252; stroke-width: 1.5; fill: none; }
+      .wave  { stroke: #1565c0; stroke-width: 2.5; fill: none; }
+      .dim   { stroke: #c62828; stroke-width: 1.2; fill: none; }
+      .dim-text { fill: #c62828; font-family: system-ui, sans-serif; font-size: 12px; font-weight: bold; }
+      .angle { fill: #2e7d32; font-weight: bold; font-family: system-ui, sans-serif; font-size: 13px; }
+    </style>
+  </defs>
+
+  <text x="390" y="25" text-anchor="middle" class="big">サーボモータの PWM：周期 20 ms、HIGH 幅 1〜2 ms が角度に対応</text>
+
+  <!-- Main waveform plot -->
+  <g transform="translate(40,60)">
+    <!-- Y axis labels -->
+    <text x="-10" y="20" text-anchor="end" class="small">HIGH (5V)</text>
+    <text x="-10" y="110" text-anchor="end" class="small">LOW (0V)</text>
+
+    <!-- Axes -->
+    <line x1="10" y1="20" x2="10" y2="120" class="axis"/>
+    <line x1="10" y1="120" x2="700" y2="120" class="axis"/>
+    <text x="710" y="125" class="small">t</text>
+
+    <!-- Waveform: 3 cycles showing 1.5 ms pulse (centered angle) -->
+    <!-- cycle 1: 0-200 (20ms, 1 ms scale = 10px) -->
+    <!-- pulse at start: HIGH 15px (1.5ms), LOW 185px (18.5ms) -->
+    <path d="M 10 120 L 10 20 L 25 20 L 25 120 L 210 120 L 210 20 L 225 20 L 225 120 L 410 120 L 410 20 L 425 20 L 425 120 L 610 120 L 610 20" class="wave"/>
+
+    <!-- Mark 20 ms period -->
+    <line x1="10" y1="150" x2="210" y2="150" class="dim"/>
+    <polygon points="10,150 16,146 16,154" fill="#c62828"/>
+    <polygon points="210,150 204,146 204,154" fill="#c62828"/>
+    <text x="110" y="170" text-anchor="middle" class="dim-text">周期 T = 20 ms（50 Hz）</text>
+
+    <!-- Mark 1.5 ms pulse width -->
+    <line x1="10" y1="45" x2="25" y2="45" class="dim"/>
+    <text x="60" y="40" class="dim-text">1.5 ms</text>
+    <line x1="10" y1="40" x2="40" y2="40" stroke="#c62828" stroke-width="1" fill="none"/>
+
+    <!-- Time ticks -->
+    <line x1="10" y1="120" x2="10" y2="126" class="axis"/>
+    <text x="10" y="140" text-anchor="middle" class="mono">0</text>
+    <line x1="210" y1="120" x2="210" y2="126" class="axis"/>
+    <text x="210" y="140" text-anchor="middle" class="mono">20ms</text>
+    <line x1="410" y1="120" x2="410" y2="126" class="axis"/>
+    <text x="410" y="140" text-anchor="middle" class="mono">40ms</text>
+    <line x1="610" y1="120" x2="610" y2="126" class="axis"/>
+    <text x="610" y="140" text-anchor="middle" class="mono">60ms</text>
+  </g>
+
+  <!-- Angle mapping panel -->
+  <g transform="translate(40,220)">
+    <rect x="0" y="0" width="700" height="100" rx="6" fill="#f5f5f5" stroke="#888"/>
+    <text x="350" y="22" text-anchor="middle" class="big">HIGH パルス幅 → サーボ角度</text>
+
+    <text x="20" y="50" class="angle">1.0 ms</text>
+    <text x="20" y="68" class="small">（左端 0°）</text>
+
+    <text x="180" y="50" class="angle">1.5 ms</text>
+    <text x="180" y="68" class="small">（中央 90°）</text>
+
+    <text x="340" y="50" class="angle">2.0 ms</text>
+    <text x="340" y="68" class="small">（右端 180°）</text>
+
+    <text x="500" y="50" class="small">Arduino コード例：</text>
+    <text x="500" y="70" class="mono">servo.write(90);</text>
+    <text x="500" y="86" class="mono">servo.writeMicroseconds(1500);</text>
+  </g>
+</svg>

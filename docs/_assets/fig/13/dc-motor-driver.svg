@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 340" role="img" aria-label="DC モータドライバを使った正しい配線">
+  <title>DRV8835 モータドライバによる DC モータ駆動：V 分離／GND 共通</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 12px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .wire  { stroke: #525252; stroke-width: 2; fill: none; }
+      .wire-vm { stroke: #ef6c00; stroke-width: 2.5; fill: none; }
+      .wire-vcc { stroke: #c62828; stroke-width: 2; fill: none; }
+      .wire-sig { stroke: #1565c0; stroke-width: 2; fill: none; }
+      .wire-gnd { stroke: #212121; stroke-width: 2; fill: none; }
+      .body  { stroke: #525252; stroke-width: 2; fill: #ffffff; }
+      .board { stroke: #525252; stroke-width: 2; fill: #eceff1; }
+      .driver { stroke: #525252; stroke-width: 2; fill: #fff8e1; }
+      .battery { stroke: #ef6c00; stroke-width: 2; fill: #fff3e0; }
+    </style>
+  </defs>
+
+  <text x="390" y="25" text-anchor="middle" class="big">DRV8835 モータドライバでの DC モータ駆動（V 分離 / GND 共通）</text>
+
+  <!-- Arduino -->
+  <rect x="30" y="60" width="140" height="200" rx="6" class="board"/>
+  <text x="100" y="85" text-anchor="middle" class="big">Arduino Uno</text>
+  <rect x="170" y="100" width="14" height="12" class="body"/>
+  <text x="165" y="110" text-anchor="end" class="small">5V</text>
+  <rect x="170" y="130" width="14" height="12" class="body"/>
+  <text x="165" y="140" text-anchor="end" class="small">D9 (PWM)</text>
+  <rect x="170" y="160" width="14" height="12" class="body"/>
+  <text x="165" y="170" text-anchor="end" class="small">D8</text>
+  <rect x="170" y="230" width="14" height="12" class="body"/>
+  <text x="165" y="240" text-anchor="end" class="small">GND</text>
+
+  <!-- Motor driver -->
+  <rect x="300" y="80" width="180" height="180" rx="6" class="driver"/>
+  <text x="390" y="105" text-anchor="middle" class="big">DRV8835</text>
+
+  <!-- Driver pins (logic side) -->
+  <rect x="286" y="120" width="14" height="12" class="body"/>
+  <text x="280" y="130" text-anchor="end" class="small">V_CC (2-7V)</text>
+  <rect x="286" y="150" width="14" height="12" class="body"/>
+  <text x="280" y="160" text-anchor="end" class="small">AIN1 (PWM)</text>
+  <rect x="286" y="180" width="14" height="12" class="body"/>
+  <text x="280" y="190" text-anchor="end" class="small">AIN2 (DIR)</text>
+  <rect x="286" y="240" width="14" height="12" class="body"/>
+  <text x="280" y="250" text-anchor="end" class="small">GND</text>
+
+  <!-- Driver pins (motor side) -->
+  <rect x="480" y="120" width="14" height="12" class="body"/>
+  <text x="500" y="130" class="small">V_M (2-11V)</text>
+  <rect x="480" y="170" width="14" height="12" class="body"/>
+  <text x="500" y="180" class="small">AOUT1</text>
+  <rect x="480" y="200" width="14" height="12" class="body"/>
+  <text x="500" y="210" class="small">AOUT2</text>
+  <rect x="480" y="240" width="14" height="12" class="body"/>
+  <text x="500" y="250" class="small">GND</text>
+
+  <!-- Wires from Arduino to driver -->
+  <!-- 5V logic -->
+  <line x1="184" y1="106" x2="286" y2="126" class="wire-vcc"/>
+  <text x="220" y="100" class="small" fill="#c62828">5V (logic)</text>
+  <!-- D9 → AIN1 -->
+  <line x1="184" y1="136" x2="286" y2="156" class="wire-sig"/>
+  <text x="220" y="148" class="small" fill="#1565c0">PWM</text>
+  <!-- D8 → AIN2 -->
+  <line x1="184" y1="166" x2="286" y2="186" class="wire-sig"/>
+  <text x="220" y="180" class="small" fill="#1565c0">DIR</text>
+  <!-- GND -->
+  <line x1="184" y1="236" x2="286" y2="246" class="wire-gnd"/>
+  <text x="220" y="230" class="small">GND</text>
+
+  <!-- Battery -->
+  <rect x="560" y="60" width="100" height="80" rx="6" class="battery"/>
+  <text x="610" y="85" text-anchor="middle" class="big">7.4V</text>
+  <text x="610" y="105" text-anchor="middle" class="small">（リポ 2S）</text>
+  <text x="610" y="125" text-anchor="middle" class="small">or 単3 × 6</text>
+
+  <rect x="556" y="80" width="14" height="12" class="body"/>
+  <text x="550" y="90" text-anchor="end" class="small">V+</text>
+  <rect x="556" y="110" width="14" height="12" class="body"/>
+  <text x="550" y="120" text-anchor="end" class="small">GND</text>
+
+  <!-- Battery → V_M of driver -->
+  <path d="M 556 86 L 520 86 L 520 126 L 494 126" class="wire-vm"/>
+  <text x="510" y="80" class="small" fill="#ef6c00">V_M (モータ電源)</text>
+
+  <!-- Battery GND → driver GND (common!) -->
+  <path d="M 556 116 L 528 116 L 528 246 L 494 246" class="wire-gnd"/>
+  <text x="543" y="180" class="small">共通 GND</text>
+
+  <!-- Motor -->
+  <circle cx="620" cy="230" r="30" class="body"/>
+  <text x="620" y="236" text-anchor="middle" class="big" font-size="18">M</text>
+
+  <!-- Driver outputs to motor -->
+  <path d="M 494 176 L 555 176 L 555 210 L 593 230" class="wire"/>
+  <path d="M 494 206 L 545 206 L 545 250 L 595 250" class="wire"/>
+  <text x="540" y="195" class="small">AOUT1</text>
+  <text x="540" y="270" class="small">AOUT2</text>
+
+  <text x="390" y="305" text-anchor="middle" class="small">V 分離（ロジック 5V とモータ 7.4V が別電源）／ GND 共通（3 者の 0V が 1 点）</text>
+</svg>

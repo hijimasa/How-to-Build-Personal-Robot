@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 400" role="img" aria-label="ライントレースカーの全体ブロック図">
+  <title>ライントレースカー：電気と機械のブロック構成、配線、電源系統</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 12px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+      .small { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; fill: #444; }
+      .mono  { font-family: monospace; font-size: 11px; fill: #222; }
+      .mcu   { fill: #eceff1; stroke: #525252; stroke-width: 2; }
+      .sensor { fill: #fff3e0; stroke: #ef6c00; stroke-width: 2; }
+      .driver { fill: #fff8e1; stroke: #f9a825; stroke-width: 2; }
+      .motor { fill: #546e7a; stroke: #263238; stroke-width: 2; }
+      .battery { fill: #ffebee; stroke: #c62828; stroke-width: 2; }
+      .chassis { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; stroke-dasharray: 6 3; }
+      .wire-pwr { stroke: #c62828; stroke-width: 2; fill: none; }
+      .wire-sig { stroke: #1565c0; stroke-width: 2; fill: none; }
+      .wire-gnd { stroke: #212121; stroke-width: 2; fill: none; }
+      .wire-motor { stroke: #757575; stroke-width: 2.5; fill: none; }
+    </style>
+  </defs>
+
+  <text x="390" y="26" text-anchor="middle" class="big">ライントレースカー：全体ブロック図と配線</text>
+
+  <!-- Chassis outline (encompassing the whole robot) -->
+  <rect x="20" y="50" width="740" height="340" rx="10" class="chassis"/>
+  <text x="40" y="70" class="small" fill="#2e7d32">機械：アクリル 5 mm 底板 + 3D プリントマウント</text>
+
+  <!-- Arduino Uno (center-left) -->
+  <rect x="280" y="150" width="140" height="90" rx="4" class="mcu"/>
+  <text x="350" y="175" text-anchor="middle" class="big">Arduino Uno R3</text>
+  <text x="350" y="195" text-anchor="middle" class="small">マイコン / 制御ロジック</text>
+  <text x="350" y="215" text-anchor="middle" class="mono">A0, A1, D5, D6, D8, D9</text>
+
+  <!-- Left sensor -->
+  <rect x="70" y="100" width="130" height="60" rx="4" class="sensor"/>
+  <text x="135" y="125" text-anchor="middle" class="big">TCRT5000 ×1</text>
+  <text x="135" y="142" text-anchor="middle" class="small">反射型フォトセンサ（左）</text>
+  <text x="135" y="156" text-anchor="middle" class="mono">→ A0</text>
+
+  <!-- Right sensor -->
+  <rect x="500" y="100" width="130" height="60" rx="4" class="sensor"/>
+  <text x="565" y="125" text-anchor="middle" class="big">TCRT5000 ×1</text>
+  <text x="565" y="142" text-anchor="middle" class="small">反射型フォトセンサ（右）</text>
+  <text x="565" y="156" text-anchor="middle" class="mono">→ A1</text>
+
+  <!-- Motor driver -->
+  <rect x="280" y="280" width="140" height="70" rx="4" class="driver"/>
+  <text x="350" y="305" text-anchor="middle" class="big">DRV8835</text>
+  <text x="350" y="322" text-anchor="middle" class="small">デュアル H ブリッジ</text>
+  <text x="350" y="338" text-anchor="middle" class="mono">V_M / V_CC / GND</text>
+
+  <!-- Left motor -->
+  <circle cx="130" cy="310" r="30" class="motor"/>
+  <text x="130" y="314" text-anchor="middle" class="big" fill="#eceff1">M L</text>
+  <text x="130" y="355" text-anchor="middle" class="small">左 DC モータ + 車輪</text>
+
+  <!-- Right motor -->
+  <circle cx="570" cy="310" r="30" class="motor"/>
+  <text x="570" y="314" text-anchor="middle" class="big" fill="#eceff1">M R</text>
+  <text x="570" y="355" text-anchor="middle" class="small">右 DC モータ + 車輪</text>
+
+  <!-- Battery -->
+  <rect x="640" y="220" width="100" height="60" rx="4" class="battery"/>
+  <text x="690" y="245" text-anchor="middle" class="big">電池</text>
+  <text x="690" y="262" text-anchor="middle" class="small">単 3 × 4 本</text>
+  <text x="690" y="276" text-anchor="middle" class="small">6 V / モータ用</text>
+
+  <!-- USB (for development) -->
+  <rect x="240" y="105" width="80" height="30" rx="4" class="battery"/>
+  <text x="280" y="125" text-anchor="middle" class="small">USB（開発時）</text>
+  <text x="280" y="138" text-anchor="middle" class="small">5 V / ロジック用</text>
+
+  <!-- Wires: sensors to MCU (signal) -->
+  <line x1="200" y1="130" x2="280" y2="170" class="wire-sig"/>
+  <line x1="500" y1="130" x2="420" y2="170" class="wire-sig"/>
+
+  <!-- Wires: MCU to driver (PWM + DIR) -->
+  <line x1="320" y1="240" x2="320" y2="280" class="wire-sig"/>
+  <line x1="380" y1="240" x2="380" y2="280" class="wire-sig"/>
+
+  <!-- Wires: driver to motors -->
+  <line x1="280" y1="310" x2="160" y2="310" class="wire-motor"/>
+  <line x1="420" y1="310" x2="540" y2="310" class="wire-motor"/>
+
+  <!-- Power: battery to driver V_M -->
+  <path d="M 640 240 L 420 285" class="wire-pwr"/>
+  <text x="500" y="258" class="small" fill="#c62828">V_M (6V)</text>
+
+  <!-- Power: USB to MCU -->
+  <line x1="280" y1="135" x2="310" y2="150" class="wire-pwr"/>
+
+  <!-- GND (common) -->
+  <path d="M 420 325 L 480 335 L 640 285" class="wire-gnd"/>
+  <text x="500" y="345" class="small">GND 共通</text>
+
+  <!-- Legend -->
+  <rect x="40" y="360" width="500" height="25" rx="3" fill="#ffffff" stroke="#888"/>
+  <line x1="50" y1="373" x2="80" y2="373" class="wire-pwr"/>
+  <text x="85" y="377" class="small">電源</text>
+  <line x1="120" y1="373" x2="150" y2="373" class="wire-sig"/>
+  <text x="155" y="377" class="small">信号（センサ/PWM）</text>
+  <line x1="280" y1="373" x2="310" y2="373" class="wire-motor"/>
+  <text x="315" y="377" class="small">モータ線</text>
+  <line x1="380" y1="373" x2="410" y2="373" class="wire-gnd"/>
+  <text x="415" y="377" class="small">GND</text>
+</svg>

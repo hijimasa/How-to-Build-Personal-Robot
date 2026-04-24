@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" role="img" aria-label="DC プラグのセンタープラスとセンターマイナス">
+  <title>DC プラグの極性：センタープラス（内側 +、外側 −）／センターマイナス（内側 −、外側 +）</title>
+  <defs>
+    <style>
+      .lbl   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; fill: #222; }
+      .big   { font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-weight: bold; fill: #222; }
+      .mono  { font-family: "Consolas", monospace; font-size: 14px; font-weight: bold; fill: #222; }
+      .ring  { fill: #ffffff; stroke: #525252; stroke-width: 2.5; }
+      .inner { fill: #525252; stroke: #525252; stroke-width: 2; }
+      .sign  { font-family: system-ui, sans-serif; font-size: 28px; font-weight: bold; }
+      .arc   { fill: none; stroke: #525252; stroke-width: 2; }
+      .ok-b  { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .ng-b  { fill: #fff3e0; stroke: #ef6c00; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle" class="big">DC プラグの極性表記 — 記号で見分ける</text>
+
+  <!-- LEFT: Center Positive -->
+  <g transform="translate(30,70)">
+    <rect x="0" y="0" width="300" height="210" rx="8" class="ok-b"/>
+
+    <!-- Symbol (IEC-like): C arc + inner dot, plus/minus labels -->
+    <!-- Outer arc (C shape open to the right) -->
+    <path d="M 140 50 A 45 45 0 1 0 140 140" class="arc" stroke-width="3"/>
+    <!-- inner dot -->
+    <circle cx="130" cy="95" r="8" fill="#525252"/>
+    <!-- small connecting line from dot to right -->
+    <line x1="138" y1="95" x2="180" y2="95" class="arc" stroke-width="3"/>
+    <!-- plus sign on dot side -->
+    <text x="210" y="100" class="sign" fill="#2e7d32">＋</text>
+    <!-- minus sign on arc side -->
+    <text x="85" y="100" class="sign" fill="#c62828">−</text>
+
+    <text x="150" y="180" text-anchor="middle" class="big">センタープラス</text>
+    <text x="150" y="200" text-anchor="middle" class="lbl">（内側：＋　外側：−）</text>
+  </g>
+
+  <!-- RIGHT: Center Negative -->
+  <g transform="translate(370,70)">
+    <rect x="0" y="0" width="300" height="210" rx="8" class="ng-b"/>
+
+    <!-- Outer arc open to the right -->
+    <path d="M 140 50 A 45 45 0 1 0 140 140" class="arc" stroke-width="3"/>
+    <!-- inner dot -->
+    <circle cx="130" cy="95" r="8" fill="#525252"/>
+    <!-- connecting line -->
+    <line x1="138" y1="95" x2="180" y2="95" class="arc" stroke-width="3"/>
+    <!-- minus on dot side, plus on arc side -->
+    <text x="210" y="100" class="sign" fill="#c62828">−</text>
+    <text x="85" y="100" class="sign" fill="#2e7d32">＋</text>
+
+    <text x="150" y="180" text-anchor="middle" class="big">センターマイナス</text>
+    <text x="150" y="200" text-anchor="middle" class="lbl">（内側：−　外側：＋）</text>
+  </g>
+
+  <!-- Bottom caption -->
+  <text x="350" y="300" text-anchor="middle" class="lbl">Arduino Uno R3 など本書で扱うボードの多くは「センタープラス」。</text>
+</svg>
