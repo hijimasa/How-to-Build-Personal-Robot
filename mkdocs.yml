@@ -5,6 +5,8 @@ site_url: https://hijimasa.github.io/How-to-Build-Personal-Robot/
 repo_url: https://github.com/hijimasa/How-to-Build-Personal-Robot
 repo_name: How-to-Build-Personal-Robot
 edit_uri: edit/main/docs/
+copyright: >
+  本文 CC BY 4.0 / コード MIT | <a href="https://hijimasa.github.io/How-to-Build-Personal-Robot/appendix/licenses-and-attributions/">AI 生成免責・ライセンス詳細</a>
 
 # v1 は日本語ファースト。英語は後追いで入れる想定のため、i18n プラグインを
 # 設定しつつも fallback_to_default: true で日本語にフォールバックさせる。
@@ -172,4 +174,5 @@ nav:
       - プロジェクト A ライントレースカー: projects/31-project-a-linetracer.md
 
   - 付録:
+      - ライセンスと出典一覧: appendix/licenses-and-attributions.md
       - クローンボードの取り扱い: appendix/clone-boards.md

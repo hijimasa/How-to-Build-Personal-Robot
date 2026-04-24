@@ -8,6 +8,30 @@
     - **AI エージェント時代の実装教本** — マイコン選定やサンプルコード生成は AI に任せ、本書は「AI では代替できない電気・機械のフィジカルな経験知」に集中
     - **電気系（前半）と機械系（後半）のミラー構造** — 「基礎 → ワークフロー → トピック」の同じリズムを両側に適用
 
+!!! warning "AI 生成コンテンツに関する注意"
+    本サイトの本文は AI（Claude と Codex）を用いて作成・編集しています。
+    内容は執筆時点の情報に基づきますが、**正確性・完全性・最新性を保証するものではありません**。
+    実装時は必ずデータシート、メーカー公式資料、各種規格書などの一次情報で検証してください。
+    本サイトの情報利用に起因する損害について、著者は責任を負いません。
+
+!!! info "はじめての人向け：最短ルート（まずはここだけ）"
+    最初から 31 章を全部読み切るより、次の順で「安全に作り始める最小セット」を先に通すと、途中離脱しにくくなります。
+
+    1. [第 1 章](getting-started/01-introduction.md) の安全意識
+    2. [第 2 章](getting-started/02-safety-basics.md) の GPIO 定格と通電前チェック
+    3. [第 4 章](getting-started/04-power.md) の「V は分離 / GND は共通」
+    4. [第 10 章](topics/10-led.md) で抵抗計算を 1 回だけ実践
+    5. [第 12 章](topics/12-transistor-mosfet.md) と [第 13 章](topics/13-dc-motor.md) で「GPIO は信号だけ、電力はドライバ経由」を定着
+    6. [第 31 章](projects/31-project-a-linetracer.md) を先に眺めて完成像を把握し、必要に応じて戻り読み
+
+!!! info "機械系を先に進める人向け（最短）"
+    1. [第 18 章](basics-mechanical/18-mechanical-basics.md) で壊れ方の直感をつかむ
+    2. [第 20 章](basics-mechanical/20-dimensions-tolerance-fit.md) で寸法・公差だけ先に覚える
+    3. [第 21 章](workflow-mechanical/21-design-phase.md) の要件メモを埋める
+    4. [第 22 章](workflow-mechanical/22-fabrication-phase.md) で加工手段を決める
+    5. [第 24 章](workflow-mechanical/24-assembly-check.md) と [第 25 章](workflow-mechanical/25-debugging.md) を手元に置いて実装
+    6. [第 31 章](projects/31-project-a-linetracer.md) の機械パートで統合する
+
 ## 対象読者
 
 想定する「できること」:
@@ -46,4 +70,8 @@
 
 ## ライセンス
 
-本文：CC BY 4.0（予定） / コード：MIT（予定）
+本文：CC BY 4.0 / コード：MIT
+
+※ 画像・図版・外部素材に個別ライセンス表記がある場合は、その表記を優先します。
+
+詳細は [ライセンスと出典一覧](appendix/licenses-and-attributions.md) を参照してください。
